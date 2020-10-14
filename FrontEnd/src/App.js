@@ -1,11 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import logo from './logo.svg';
 import { Counter } from './features/counter/Counter';
+import {fetchUsers} from './features/users/usersSlice'
 import './App.css';
+import {useSelector, useDispatch } from 'react-redux'
+
 
 function App() {
+  const dispatch = useDispatch()
 
-
+  useEffect(() => {
+    dispatch(fetchUsers())
+  })
 
   return (
     <div className="App">
