@@ -3,6 +3,7 @@ class UsersController < ApplicationController
     
   def index
       @users = User.all
+      #TODO only send back username and id.
          if @users
             render json: {
             users: @users
@@ -31,7 +32,7 @@ def show
     def create
        @user = User.new(user_params)
            if @user.save
-               login!  
+              login!  
                render json: {
                status: :created,
                user: @user
@@ -46,6 +47,6 @@ def show
 private
     
    def user_params
-       params.require(:user).permit(:username, :password, :password_confirmation)
+       params.require(:user).permit(:username, :password, :password_confirmation, :email)
    end
 end
