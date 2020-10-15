@@ -9,12 +9,12 @@ import {Login} from './features/users/Login'
 import {Signup} from './features/users/Signup'
 
 function App() {
-  // const dispatch = useDispatch()
+  const dispatch = useDispatch()
 
-  // useEffect(() => {
-  //   dispatch(fetchUsers())
+  useEffect(() => {
+    dispatch(fetchUsers())
 
-  // })
+  })
 
   return (
     <div className="App">

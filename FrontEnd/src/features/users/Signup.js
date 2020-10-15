@@ -57,7 +57,7 @@ export const Signup = () => {
           onChange={ e => setPassword(e.target.value)}    
         />
         <button type='button' onClick={handleSubmit}>
-          Login
+          SignUp
         </button>
         <div>
             or <Link to='/login'>Login</Link>

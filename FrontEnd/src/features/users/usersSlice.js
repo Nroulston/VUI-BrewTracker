@@ -28,8 +28,8 @@ export const logUserIn = createAsyncThunk('users/login', async (userInfo) => {
 
 export const signUpUser = createAsyncThunk('users/signup', async (userInfo) => {
   
-  const response = await axios.post(`${localHost}/users`, {user: userInfo})
-  debugger
+  const response = await axios.post(`${localHost}/users`, {user: userInfo}, {withCredentials:true})
+  
   return response
 })
 
@@ -51,8 +51,11 @@ const usersSlice = createSlice({
       
       state.currentUser = action.payload.data.user
       state.users.push(action.payload.data.user)
+      state.isLoggedIn = true
+      
     },
     [signUpUser.rejected]: (state, action) => {
+      debugger
       state.error = action.error.message
     }
     

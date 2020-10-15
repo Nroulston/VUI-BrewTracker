@@ -38,6 +38,7 @@ def show
                user: @user
            }
           else 
+             
               render json: {
               status: 500,
               errors: @user.errors.full_messages
