@@ -12,29 +12,20 @@ const localHost = 'http://localhost:3001'
 
 export const fetchUsers = createAsyncThunk('users/fetchUsers', async () => {
   const response = await axios.get(`${localHost}/users`, {withCredentials:true})
-
-  
   return response.data.users
-
 })
-
-export const logUserIn = createAsyncThunk('users/login', async (userInfo) => {
-  const response = await axios.post(`${localHost}/login`, {user: userInfo}, {withCredentials:true})
-  debugger
-
-
-  return response
-  }
-)
-
-
 
 const usersSlice = createSlice({
   name: 'users',
   initialState,
   reducers: {
-    userSignedUp(state, action) {debugger
+    userSignedUp(state, action) {
       state.currentUser = action.payload
+      state.users.push(action.payload)
+      state.isLoggedIn = true
+    },
+    userLoggedIn(state, action){
+      state.currentUser= action.payload
       state.users.push(action.payload)
       state.isLoggedIn = true
     }
@@ -42,15 +33,9 @@ const usersSlice = createSlice({
   extraReducers: {
     [fetchUsers.fulfilled]: (state, action) => {
       state.users = action.payload
-  
-    },
-    [logUserIn.fulfilled]: (state, action) => {
-     
-      state.currentUser = action.payload.data
-      
     },
   }
 })
 
-export const {userSignedUp} = usersSlice.actions
+export const {userSignedUp, userLoggedIn} = usersSlice.actions
 export default usersSlice.reducer

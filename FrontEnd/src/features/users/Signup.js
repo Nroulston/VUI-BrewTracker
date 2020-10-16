@@ -13,7 +13,6 @@ export const Signup = () => {
   const [errors, setErrors] = useState([])
 
   const dispatch = useDispatch()
- 
 
   const handleSubmit = async() => {
     setErrors([])

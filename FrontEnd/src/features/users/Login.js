@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import {Link} from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import {logUserIn} from './usersSlice'
-import { unwrapResult } from '@reduxjs/toolkit';
+import {userLoggedIn} from './usersSlice'
 
+import axios from 'axios'
 export const Login = () => {
   const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
@@ -11,19 +11,25 @@ export const Login = () => {
   const [errors, setErrors] = useState('')
 
   const dispatch = useDispatch()
- 
 
   const handleSubmit = async() => {
-    
-    try {
-      const resultAction = await dispatch(
-        logUserIn({username, email, password})
-      )
-      unwrapResult(resultAction)
-    } catch (err) {
-      console.log(err)
+  setErrors([])
+    const user = {
+      username,
+      email,
+      password
     }
-
+  
+   const response = await axios.post(`http://localhost:3001/login`, {user}, {withCredentials:true})
+   if(response.data.errors) {
+      setErrors(response.data.errors)
+   } else { 
+     dispatch(userLoggedIn(response.data.user))
+     setPassword('')
+     setUsername('')
+     setEmail('')
+     //Todo Redirect to main page
+   }
   }
 
   return(
