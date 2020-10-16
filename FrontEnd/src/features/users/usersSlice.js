@@ -6,13 +6,12 @@ const initialState = {
   currentUser: {},
   isLoggedIn: false,
   status: 'idle',
-  error: 'null'
 }
 
 const localHost = 'http://localhost:3001'
 
 export const fetchUsers = createAsyncThunk('users/fetchUsers', async () => {
-  const response = await axios.get(`${localHost}/users`)
+  const response = await axios.get(`${localHost}/users`, {withCredentials:true})
 
   
   return response.data.users
@@ -20,16 +19,18 @@ export const fetchUsers = createAsyncThunk('users/fetchUsers', async () => {
 })
 
 export const logUserIn = createAsyncThunk('users/login', async (userInfo) => {
-  const response = await axios.post(`${localHost}/login`, {user: userInfo})
+  const response = await axios.post(`${localHost}/login`, {user: userInfo}, {withCredentials:true})
+  debugger
 
-  return response.user
+  
+  return response
   }
 )
 
 export const signUpUser = createAsyncThunk('users/signup', async (userInfo) => {
   
   const response = await axios.post(`${localHost}/users`, {user: userInfo}, {withCredentials:true})
-  
+  debugger
   return response
 })
 
@@ -37,7 +38,11 @@ const usersSlice = createSlice({
   name: 'users',
   initialState,
   reducers: {
- 
+    userSignedUp(state, action) {debugger
+      state.currentUser = action.payload
+      state.users.push(action.payload)
+      state.isLoggedIn = true
+    }
   },
   extraReducers: {
     [fetchUsers.fulfilled]: (state, action) => {
@@ -45,22 +50,12 @@ const usersSlice = createSlice({
   
     },
     [logUserIn.fulfilled]: (state, action) => {
-      state.currentUser = action.payload
-    },
-    [signUpUser.fulfilled]: (state,action) => {
-      
-      state.currentUser = action.payload.data.user
-      state.users.push(action.payload.data.user)
-      state.isLoggedIn = true
+     
+      state.currentUser = action.payload.data
       
     },
-    [signUpUser.rejected]: (state, action) => {
-      debugger
-      state.error = action.error.message
-    }
-    
   }
 })
 
-
+export const {userSignedUp} = usersSlice.actions
 export default usersSlice.reducer
