@@ -15,6 +15,12 @@ export const fetchUsers = createAsyncThunk('users/fetchUsers', async () => {
   return response.data.users
 })
 
+export const checkLoginStatus = createAsyncThunk('users/logged_in', async () => {
+  const response = await axios .get("http://localhost:3001/logged_in", { withCredentials: true })
+
+  return response.data.user
+})
+
 const usersSlice = createSlice({
   name: 'users',
   initialState,
@@ -34,6 +40,11 @@ const usersSlice = createSlice({
     [fetchUsers.fulfilled]: (state, action) => {
       state.users = action.payload
     },
+    [checkLoginStatus.fulfilled]: (state,action) => {
+      state.currentUser= action.payload
+      state.users.push(action.payload)
+      state.isLoggedIn = true
+    }
   }
 })
 

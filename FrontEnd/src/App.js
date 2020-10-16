@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 
 import {BrowserRouter, Switch, Route, Redirect} from 'react-router-dom'
-import {fetchUsers} from './features/users/usersSlice'
+import {fetchUsers, checkLoginStatus} from './features/users/usersSlice'
 import './App.css';
 import {useSelector, useDispatch } from 'react-redux'
 import Home from './app/Home'
@@ -13,7 +13,7 @@ function App() {
 
   useEffect(() => {
     dispatch(fetchUsers())
-
+    dispatch(checkLoginStatus())
   })
 
   return (
