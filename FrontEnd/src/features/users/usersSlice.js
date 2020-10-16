@@ -22,17 +22,12 @@ export const logUserIn = createAsyncThunk('users/login', async (userInfo) => {
   const response = await axios.post(`${localHost}/login`, {user: userInfo}, {withCredentials:true})
   debugger
 
-  
+
   return response
   }
 )
 
-export const signUpUser = createAsyncThunk('users/signup', async (userInfo) => {
-  
-  const response = await axios.post(`${localHost}/users`, {user: userInfo}, {withCredentials:true})
-  debugger
-  return response
-})
+
 
 const usersSlice = createSlice({
   name: 'users',
