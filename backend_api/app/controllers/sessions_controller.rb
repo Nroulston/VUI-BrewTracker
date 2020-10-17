@@ -8,11 +8,8 @@ class SessionsController < ApplicationController
           logged_in: true,
           user: @user
         }
-      else
-        render json: { 
-          status: 401,
-          errors: ['no such user, please try again']
-        }
+      else 
+        render json: {response: 'Unable to authenticate'}, status: 401
       end
   end
   def is_logged_in?
@@ -21,11 +18,9 @@ class SessionsController < ApplicationController
           logged_in: true,
           user: current_user
         }
-      else
-        render json: {
-          logged_in: false,
-          message: 'no such user'
-        }
+       else
+        render json: {response: 'No user is logged in'}, status: 401
+        
       end
   end
   def destroy

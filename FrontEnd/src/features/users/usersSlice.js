@@ -10,15 +10,20 @@ const initialState = {
 
 const localHost = 'http://localhost:3001'
 
-export const fetchUsers = createAsyncThunk('users/fetchUsers', async () => {
+export const fetchUsers = createAsyncThunk('users/fetchUsers', async ( ) => {
   const response = await axios.get(`${localHost}/users`, {withCredentials:true})
   return response.data.users
 })
 
-export const checkLoginStatus = createAsyncThunk('users/logged_in', async () => {
-  const response = await axios .get("http://localhost:3001/logged_in", { withCredentials: true })
-
-  return response.data.user
+export const checkLoginStatus = createAsyncThunk('users/logged_in', async ( arg, {rejectWithValue}) => {
+  try{
+    const response = await axios.get("http://localhost:3001/logged_in", { withCredentials: true })
+    
+    debugger
+    return response.data.user
+  } catch(err) {
+    return rejectWithValue(err.response.data)
+  }
 })
 
 const usersSlice = createSlice({
@@ -31,6 +36,7 @@ const usersSlice = createSlice({
       state.isLoggedIn = true
     },
     userLoggedIn(state, action){
+      debugger
       state.currentUser= action.payload
       state.users.push(action.payload)
       state.isLoggedIn = true
@@ -41,9 +47,13 @@ const usersSlice = createSlice({
       state.users = action.payload
     },
     [checkLoginStatus.fulfilled]: (state,action) => {
+      debugger
       state.currentUser= action.payload
       state.users.push(action.payload)
       state.isLoggedIn = true
+    },
+    [checkLoginStatus.rejected]: (state, action) => {
+      
     }
   }
 })
