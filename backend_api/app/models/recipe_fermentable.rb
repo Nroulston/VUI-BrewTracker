@@ -1,0 +1,2 @@
+class RecipeFermentable < ApplicationRecord
+end

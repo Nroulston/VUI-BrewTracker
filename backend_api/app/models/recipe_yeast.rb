@@ -1,0 +1,2 @@
+class RecipeYeast < ApplicationRecord
+end

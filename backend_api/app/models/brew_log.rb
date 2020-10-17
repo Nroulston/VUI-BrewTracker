@@ -1,0 +1,2 @@
+class BrewLog < ApplicationRecord
+end
