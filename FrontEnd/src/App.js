@@ -7,6 +7,7 @@ import {useDispatch } from 'react-redux'
 import Home from './app/Home'
 import {Login} from './features/users/Login'
 import {Signup} from './features/users/Signup'
+import {AddRecipeForm} from './features/recipe/AddRecipeForm'
 import { unwrapResult } from '@reduxjs/toolkit'
 
 
@@ -26,6 +27,7 @@ function App() {
               <Route exact path='/' component={Home}/>
               <Route exact path='/login' component={Login}/>
               <Route exact path='/signup' component={Signup}/>
+              <Route exact path='/recipes/new' component={AddRecipeForm}/>
               <Redirect to='/' />
             </Switch>
           </BrowserRouter>

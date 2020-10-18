@@ -6,4 +6,6 @@ Rails.application.routes.draw do
   post '/login',    to: 'sessions#create'
   get '/logged_in', to: 'sessions#is_logged_in?'
   post '/logout',   to: 'sessions#destroy'
+
+  resources :recipes, only: [:create, :show, :index]
 end
