@@ -1,6 +1,5 @@
 class Recipe < ApplicationRecord
   validates :name, presence: true, uniqueness: true
-
   has_many :brew_logs
   belongs_to :user
   
@@ -15,4 +14,11 @@ class Recipe < ApplicationRecord
 
   has_many :recipe_hops
   has_many :hops, through: :recipe_hops
+
+  def hops_attributes=(hops_attributes)
+    hops_attributes.each do |hop_attributes|
+      hop = Hop.find_or_create_by(hop_attributes)
+      self.hops << hop
+    end
+  end
 end

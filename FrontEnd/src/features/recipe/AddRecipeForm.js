@@ -20,6 +20,11 @@ export const AddRecipeForm = () => {
   const [mashPH, setMashPH] = useState("")
   const [mashSchedule, setMashSchedule] = useState("")
   const [beerStyle, setBeerStyle] = useState("")
+
+  const [hopName, setHopName] = useState('')
+  const [hopForm, setHopForm] = useState('')
+  const [hopAlpaAcid, setHopAlphaAcid] = useState('')
+
   
   const dispatch = useDispatch()
   
@@ -40,6 +45,10 @@ export const AddRecipeForm = () => {
   const onMashScheduleChanged = e => setMashSchedule(e.target.value)
   const onBeerStyleChanged = e => setBeerStyle(e.target.value)
   
+  const onHopNameChanged = e => setHopName(e.target.value)
+  const onHopFormChanged = e => setHopForm(e.target.value)
+  const onHopAlphaAcidChanged = e => setHopAlphaAcid(e.target.value)
+
   const onSaveRecipeClicked = async () => {
     const recipe = {
       user_id: currentUser.id,
@@ -55,8 +64,16 @@ export const AddRecipeForm = () => {
       srm,
       mash_ph: mashPH,
       mash_schedule: mashSchedule,
-      beerStyle
+      style: beerStyle,
+      hops_attributes: [
+        {
+          name: hopName,
+          form: hopForm,
+          alpha_acid: hopAlpaAcid   
+        }, 
+      ]
     }
+   
     
 
     const response = await axios.post('http://localhost:3001/recipes', {recipe}, {withCredentials:true})
@@ -183,7 +200,31 @@ export const AddRecipeForm = () => {
           value={beerStyle}
           onChange={onBeerStyleChanged}
         />
-
+        <h3>Hops</h3>
+        <label htmlFor="hopName">Name:</label>
+        <input 
+          type="text" 
+          name="hopName" 
+          id="hopName"
+          value={hopName}
+          onChange={onHopNameChanged}
+        />
+        <label htmlFor="hopForm">Form:</label>
+        <input 
+          type="text" 
+          name="hopForm" 
+          id="hopForm"
+          value={hopForm}
+          onChange={onHopFormChanged}
+        />
+        <label htmlFor="hopAlpaAcid">Alpha Acid:</label>
+        <input 
+          type="text" 
+          name="hopAlpaAcid" 
+          id="hopAlpaAcid"
+          value={hopAlpaAcid}
+          onChange={onHopAlphaAcidChanged}
+        />
         <button type="button" onClick={onSaveRecipeClicked} >
           Save Recipe
         </button>
