@@ -5,8 +5,9 @@ class RecipesController < ApplicationController
   end
 
   def create
-    recipe = Recipe.create!(recipe_params)
     
+    @recipe = Recipe.new(recipe_params)
+    pry
     if recipe
 
       
@@ -18,7 +19,7 @@ class RecipesController < ApplicationController
   end
   private
   def recipe_params
-    params.require(:recipe).permit(:user_id, :name, :method, :boil_time, :batch_size, :pre_boil_size, :pre_boil_gravity, :target_fg, :target_og, :ibu, :srm, :mash_ph, :mash_schedule, :style, hops_attributes: [:name, :form, :alpha_acid])
+    params.require(:recipe).permit(:user_id, :name, :method, :boil_time, :batch_size, :pre_boil_size, :pre_boil_gravity, :target_fg, :target_og, :ibu, :srm, :mash_ph, :mash_schedule, :style, hops_attributes: [:name, :form, :alpha_acid], fermentables_attributes: [:name])
   end
  
 

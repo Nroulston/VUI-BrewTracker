@@ -21,4 +21,11 @@ class Recipe < ApplicationRecord
       self.hops << hop
     end
   end
+  def fermentables_attributes=(fermentables_attributes)
+    fermentables_attributes.each do |fermentable_attributes|
+      @fermentable = Fermentable.find_or_create_by(fermentable_attributes)
+      self.fermentables << @fermentable
+      pry
+    end
+  end
 end

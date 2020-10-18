@@ -25,7 +25,8 @@ export const AddRecipeForm = () => {
   const [hopForm, setHopForm] = useState('')
   const [hopAlpaAcid, setHopAlphaAcid] = useState('')
 
-  
+  const [fermentableName, setFermentableName] = useState("")
+
   const dispatch = useDispatch()
   
   const users = useSelector(state => state.users.users)
@@ -49,6 +50,7 @@ export const AddRecipeForm = () => {
   const onHopFormChanged = e => setHopForm(e.target.value)
   const onHopAlphaAcidChanged = e => setHopAlphaAcid(e.target.value)
 
+  const onFermentableNameChanged = e => setFermentableName(e.target.value)
   const onSaveRecipeClicked = async () => {
     const recipe = {
       user_id: currentUser.id,
@@ -71,6 +73,11 @@ export const AddRecipeForm = () => {
           form: hopForm,
           alpha_acid: hopAlpaAcid   
         }, 
+      ],
+      fermentables_attributes: [ 
+        {
+        name: fermentableName
+        }
       ]
     }
    
@@ -224,6 +231,15 @@ export const AddRecipeForm = () => {
           id="hopAlpaAcid"
           value={hopAlpaAcid}
           onChange={onHopAlphaAcidChanged}
+        />
+        <h3>Fermentable</h3>
+        <label htmlFor="fermentableName">Fermentable:</label>
+        <input 
+          type="text" 
+          name="fermentableName" 
+          id="fermentableName"
+          value={fermentableName}
+          onChange={onFermentableNameChanged}
         />
         <button type="button" onClick={onSaveRecipeClicked} >
           Save Recipe
