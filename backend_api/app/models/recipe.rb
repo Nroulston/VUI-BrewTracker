@@ -21,11 +21,25 @@ class Recipe < ApplicationRecord
       self.hops << hop
     end
   end
+
   def fermentables_attributes=(fermentables_attributes)
     fermentables_attributes.each do |fermentable_attributes|
       @fermentable = Fermentable.find_or_create_by(fermentable_attributes)
       self.fermentables << @fermentable
-      
+    end
+  end
+
+  def yeasts_attributes=(yeasts_attributes)
+    yeasts_attributes.each do |yeast_attributes|
+      @yeast = Yeast.find_or_create_by(yeast_attributes)
+      self.yeasts << @yeast
+    end
+  end
+
+  def other_ingredients_attributes=(other_ingredients_attributes)
+    other_ingredients_attributes.each do |other_ingredient_attributes|
+      @other_ingredient = OtherIngredient.find_or_create_by(other_ingredient_attributes)
+      self.other_ingredients << @other_ingredient
     end
   end
 end
