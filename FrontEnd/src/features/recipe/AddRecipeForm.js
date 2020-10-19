@@ -124,8 +124,6 @@ export const AddRecipeForm = () => {
       other_ingredients_attributes: adjuncts
     }
    
-    
-
     const response = await axios.post('http://localhost:3001/recipes', {recipe}, {withCredentials:true})
     dispatch(recipeAdded(response.data.recipe))
     setName('')

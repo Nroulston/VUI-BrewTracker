@@ -24,6 +24,8 @@ export const ShowRecipe = ({match}) => {
         <h2>{recipe.name}</h2>
         <h3>{recipe.hops.each}</h3>
       </article>
+      
     </section>
+    
   )
 }

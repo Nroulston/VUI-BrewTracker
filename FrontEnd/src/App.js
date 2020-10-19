@@ -12,7 +12,7 @@ import {Login} from './features/users/Login'
 import {Signup} from './features/users/Signup'
 import {AddRecipeForm} from './features/recipe/AddRecipeForm'
 import {ShowRecipe} from './features/recipe/ShowRecipe'
-
+import {Brewlog} from './features/brewlog/Brewlog'
 
 
 function App() {
@@ -36,6 +36,7 @@ function App() {
               <Route exact path='/signup' component={Signup}/>
               <Route exact path='/recipes/new' component={AddRecipeForm}/>
               <Route exact path='/recipes/:recipeId' component={ShowRecipe}/>
+              <Route exact path='/brewlog' component={Brewlog} />
               <Redirect to='/' />
             </Switch>
           </BrowserRouter>
