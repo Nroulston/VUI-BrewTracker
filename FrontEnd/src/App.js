@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 
 import {BrowserRouter, Switch, Route, Redirect} from 'react-router-dom'
 import {fetchUsers, checkLoginStatus} from './features/users/usersSlice'
+import { fetchRecipes } from './features/recipe/recipesSlice'
 import './App.css';
 
 import {useDispatch } from 'react-redux'
@@ -20,6 +21,9 @@ function App() {
   useEffect(() => {
     dispatch(fetchUsers())
     dispatch(checkLoginStatus())
+    dispatch(fetchRecipes())
+ 
+    
   })
 
   return (

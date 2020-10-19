@@ -5,6 +5,18 @@ import axios from 'axios'
 const initialState = {
   recipes: []
 }
+const localHost = 'http://localhost:3001'
+
+export const fetchRecipes = createAsyncThunk('recipes/fetchRecipes', async() => {
+  const response = await axios.get(`${localHost}/recipes`, {withCredentials: true})
+ 
+  return response.data
+})
+export const fetchUsers = createAsyncThunk('users/fetchUsers', async() => {
+  const response = await axios.get(`${localHost}/users`, {withCredentials:true})
+  return response.data.users
+})
+
 
 const recipesSlice = createSlice({
   name: 'recipes',
@@ -15,6 +27,13 @@ const recipesSlice = createSlice({
     }
   },
   extraReducers: {
+    [fetchRecipes.fulfilled]: (state, action) => {
+      
+      state.recipes = action.payload
+    },
+    [fetchRecipes.rejected]: (state, action) => {
+      debugger
+    }
   }
 })
 
