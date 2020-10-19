@@ -7,9 +7,9 @@ import axios from 'axios'
 
 export const ShowRecipe = ({match}) => {
   const { recipeId } = match.params
-
+ 
   const recipe = useSelector( state => selectRecipeById(state, recipeId))
-
+  
   if(!recipe) {
     return (
       <section>
@@ -22,7 +22,7 @@ export const ShowRecipe = ({match}) => {
     <section>
       <article>
         <h2>{recipe.name}</h2>
-        <h3>{recipe.hops}</h3>
+        <h3>{recipe.hops.each}</h3>
       </article>
     </section>
   )

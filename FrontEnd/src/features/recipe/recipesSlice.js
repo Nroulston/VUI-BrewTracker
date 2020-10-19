@@ -37,10 +37,16 @@ const recipesSlice = createSlice({
   }
 })
 
-export const selectRecipeById = (state, recipeId) => {
-  state.recipes.recipes.find(recipe => recipe.id === recipeId)
-}
+
+   
+  
+
+
 
 export const { recipeAdded } = recipesSlice.actions
 
 export default recipesSlice.reducer
+
+//TODO Blog point - the selector needs to be in this exact format to work.
+export const selectRecipeById = (state, recipeId) => 
+  state.recipes.recipes.find(recipe => recipe.id ==recipeId)
