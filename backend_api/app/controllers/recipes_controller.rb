@@ -6,14 +6,14 @@ class RecipesController < ApplicationController
 
   def create
     
-    @recipe = Recipe.new(recipe_params)
-    pry
-    if recipe
+    @recipe = Recipe.create!(recipe_params)
+   
+    if @recipe
 
       
       render json: {
        status: :created,
-       recipe: recipe
+       recipe: @recipe
       }
     end
   end

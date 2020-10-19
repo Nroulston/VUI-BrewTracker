@@ -4,9 +4,19 @@ import { useDispatch, useSelector } from 'react-redux'
 import {recipeAdded} from './recipesSlice'
 
 import axios from 'axios'
-
+const _defaultHops = [
+  {
+    name: 'cascade',
+    form: 'pellet',
+    alpha_acid: '3.3'
+  },
+  {
+    name: 'cascade',
+    form: 'pellet',
+    alpha_acid: '3.3'
+  }
+]
 export const AddRecipeForm = () => {
-  const [recipe, setRecipe] = useState("")
   const [name, setName] = useState("")
   const [method, setMethod] = useState("")
   const [boilTime, setBoilTime] = useState("")
@@ -20,10 +30,8 @@ export const AddRecipeForm = () => {
   const [mashPH, setMashPH] = useState("")
   const [mashSchedule, setMashSchedule] = useState("")
   const [beerStyle, setBeerStyle] = useState("")
+  const [hops, setHops] = useState(_defaultHops)
 
-  const [hopName, setHopName] = useState('')
-  const [hopForm, setHopForm] = useState('')
-  const [hopAlpaAcid, setHopAlphaAcid] = useState('')
 
   const [fermentableName, setFermentableName] = useState("")
 
@@ -46,11 +54,14 @@ export const AddRecipeForm = () => {
   const onMashScheduleChanged = e => setMashSchedule(e.target.value)
   const onBeerStyleChanged = e => setBeerStyle(e.target.value)
   
-  const onHopNameChanged = e => setHopName(e.target.value)
-  const onHopFormChanged = e => setHopForm(e.target.value)
-  const onHopAlphaAcidChanged = e => setHopAlphaAcid(e.target.value)
-
   const onFermentableNameChanged = e => setFermentableName(e.target.value)
+
+  const onHopChanged = e => {
+    const tempHops = [...hops]
+    tempHops[e.target.id[e.target.id.length - 1]][e.target.name] = e.target.value
+    setHops(tempHops)
+    
+  }
   const onSaveRecipeClicked = async () => {
     const recipe = {
       user_id: currentUser.id,
@@ -67,13 +78,7 @@ export const AddRecipeForm = () => {
       mash_ph: mashPH,
       mash_schedule: mashSchedule,
       style: beerStyle,
-      hops_attributes: [
-        {
-          name: hopName,
-          form: hopForm,
-          alpha_acid: hopAlpaAcid   
-        }, 
-      ],
+      hops_attributes: hops,
       fermentables_attributes: [ 
         {
         name: fermentableName
@@ -102,6 +107,7 @@ export const AddRecipeForm = () => {
 
   return (
     <section>
+
       <h2>Add a New Recipe</h2>
       <form >
         <label htmlFor="recipeName">Recipe name:</label>
@@ -208,30 +214,34 @@ export const AddRecipeForm = () => {
           onChange={onBeerStyleChanged}
         />
         <h3>Hops</h3>
-        <label htmlFor="hopName">Name:</label>
-        <input 
-          type="text" 
-          name="hopName" 
-          id="hopName"
-          value={hopName}
-          onChange={onHopNameChanged}
-        />
-        <label htmlFor="hopForm">Form:</label>
-        <input 
-          type="text" 
-          name="hopForm" 
-          id="hopForm"
-          value={hopForm}
-          onChange={onHopFormChanged}
-        />
-        <label htmlFor="hopAlpaAcid">Alpha Acid:</label>
-        <input 
-          type="text" 
-          name="hopAlpaAcid" 
-          id="hopAlpaAcid"
-          value={hopAlpaAcid}
-          onChange={onHopAlphaAcidChanged}
-        />
+        {hops.map((hop,index) => (
+        <div key={index}>
+          <label htmlFor={'hop' +index} >Name:</label>
+          <input 
+            type="text" 
+            name='name'
+            id={'hop' +index}
+            value={hop.name}
+            onChange={onHopChanged}
+          />
+          <label htmlFor={'hopForm' + index} > Form:</label>
+          <input 
+            type="text" 
+            name='form'
+            id={'hopForm' + index}
+            value={hop.form}
+            onChange={onHopChanged}
+          />
+          <label htmlFor={'hopAlphaAcid' + index} > Alpha Acid:</label>
+          <input 
+            type="text" 
+            name='alpha_acid'
+            id={'hopFormAlphaAcid' + index}
+            value={hop.alpha_acid}
+            onChange={onHopChanged}
+          />
+        </div>
+      ))}
         <h3>Fermentable</h3>
         <label htmlFor="fermentableName">Fermentable:</label>
         <input 

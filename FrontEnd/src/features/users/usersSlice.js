@@ -19,7 +19,6 @@ export const checkLoginStatus = createAsyncThunk('users/logged_in', async ( arg,
   try{
     const response = await axios.get("http://localhost:3001/logged_in", { withCredentials: true })
     
-    debugger
     return response.data.user
   } catch(err) {
     return rejectWithValue(err.response.data)
@@ -36,7 +35,7 @@ const usersSlice = createSlice({
       state.isLoggedIn = true
     },
     userLoggedIn(state, action){
-      debugger
+   
       state.currentUser= action.payload
       state.users.push(action.payload)
       state.isLoggedIn = true
@@ -47,7 +46,7 @@ const usersSlice = createSlice({
       state.users = action.payload
     },
     [checkLoginStatus.fulfilled]: (state,action) => {
-      debugger
+     
       state.currentUser= action.payload
       state.users.push(action.payload)
       state.isLoggedIn = true

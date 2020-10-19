@@ -25,7 +25,7 @@ class Recipe < ApplicationRecord
     fermentables_attributes.each do |fermentable_attributes|
       @fermentable = Fermentable.find_or_create_by(fermentable_attributes)
       self.fermentables << @fermentable
-      pry
+      
     end
   end
 end
