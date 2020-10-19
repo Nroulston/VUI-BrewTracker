@@ -31,9 +31,9 @@ export const AddRecipeForm = () => {
   const [mashSchedule, setMashSchedule] = useState("")
   const [beerStyle, setBeerStyle] = useState("")
   const [hops, setHops] = useState(_defaultHops)
-
-
-  const [fermentableName, setFermentableName] = useState("")
+  const [fermentables, setFermentable] = useState([
+    {name: ''}
+  ])
 
   const dispatch = useDispatch()
   
@@ -54,16 +54,22 @@ export const AddRecipeForm = () => {
   const onMashScheduleChanged = e => setMashSchedule(e.target.value)
   const onBeerStyleChanged = e => setBeerStyle(e.target.value)
   
-  const onFermentableNameChanged = e => setFermentableName(e.target.value)
+  const onFermentableChanged = e => {
+    const tempFermentable = [...fermentables]
+    tempFermentable[e.target.id[e.target.id.length - 1]][e.target.name] = e.target.value
+    setFermentable(tempFermentable)
+  }
+  
+  const addNewFermentable = () => {
+    const newFermentable = [...fermentables, {name: ''}]
+    setFermentable(newFermentable)
+  }
 
   const onHopChanged = e => {
     const tempHops = [...hops]
     tempHops[e.target.id[e.target.id.length - 1]][e.target.name] = e.target.value
     setHops(tempHops)
-    
   }
-
- 
 
   const addNewHop = (e) => {
     const newHops= [...hops, {name: '', form: '', alpha_acid: ''}]
@@ -87,11 +93,7 @@ export const AddRecipeForm = () => {
       mash_schedule: mashSchedule,
       style: beerStyle,
       hops_attributes: hops,
-      fermentables_attributes: [ 
-        {
-        name: fermentableName
-        }
-      ]
+      fermentables_attributes: fermentables
     }
    
     
@@ -252,14 +254,19 @@ export const AddRecipeForm = () => {
         </div>
       ))}
         <h3>Fermentable</h3>
-        <label htmlFor="fermentableName">Fermentable:</label>
-        <input 
-          type="text" 
-          name="fermentableName" 
-          id="fermentableName"
-          value={fermentableName}
-          onChange={onFermentableNameChanged}
-        />
+        <button type='button' onClick={addNewFermentable}>Add Fermentable</button>
+          {fermentables.map((fermentable,index) => (
+            <div key={index}>
+              <label htmlFor={'fermentable' +index} >Name:</label>
+              <input 
+                type="text" 
+                name='name'
+                id={'fermentable' +index}
+                value={fermentable.name}
+                onChange={onFermentableChanged}
+              />
+            </div>
+          ))}
         <button type="button" onClick={onSaveRecipeClicked} >
           Save Recipe
         </button>
