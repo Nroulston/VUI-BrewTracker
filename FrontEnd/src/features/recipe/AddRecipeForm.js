@@ -6,14 +6,14 @@ import {recipeAdded} from './recipesSlice'
 import axios from 'axios'
 const _defaultHops = [
   {
-    name: 'cascade',
-    form: 'pellet',
-    alpha_acid: '3.3'
+    name: '',
+    form: '',
+    alpha_acid: ''
   },
   {
-    name: 'cascade',
-    form: 'pellet',
-    alpha_acid: '3.3'
+    name: '',
+    form: '',
+    alpha_acid: ''
   }
 ]
 export const AddRecipeForm = () => {
@@ -31,10 +31,9 @@ export const AddRecipeForm = () => {
   const [mashSchedule, setMashSchedule] = useState("")
   const [beerStyle, setBeerStyle] = useState("")
   const [hops, setHops] = useState(_defaultHops)
-  const [fermentables, setFermentable] = useState([
-    {name: ''}
-  ])
-
+  const [fermentables, setFermentable] = useState([{name: ''}])
+  const [yeasts, setYeasts] = useState([{name: ''}])
+  
   const dispatch = useDispatch()
   
   const users = useSelector(state => state.users.users)
@@ -59,7 +58,7 @@ export const AddRecipeForm = () => {
     tempFermentable[e.target.id[e.target.id.length - 1]][e.target.name] = e.target.value
     setFermentable(tempFermentable)
   }
-  
+
   const addNewFermentable = () => {
     const newFermentable = [...fermentables, {name: ''}]
     setFermentable(newFermentable)
@@ -72,9 +71,21 @@ export const AddRecipeForm = () => {
   }
 
   const addNewHop = (e) => {
-    const newHops= [...hops, {name: '', form: '', alpha_acid: ''}]
-    setHops(newHops)
+    const tempHops= [...hops, {name: '', form: '', alpha_acid: ''}]
+    setHops(tempHops)
   }
+
+  const onYeastChanged = () => {
+    const tempYeast = [...yeasts, {name: ''}]
+    setYeasts(tempYeast)
+  }
+
+  const addNewYeast = () => {
+    const tempYeasts = [...yeasts, {name: ''}]
+    setYeasts(tempYeasts)
+  }
+
+
 
   const onSaveRecipeClicked = async () => {
     const recipe = {
@@ -93,7 +104,8 @@ export const AddRecipeForm = () => {
       mash_schedule: mashSchedule,
       style: beerStyle,
       hops_attributes: hops,
-      fermentables_attributes: fermentables
+      fermentables_attributes: fermentables,
+      yeasts_attributes: yeasts
     }
    
     
@@ -264,6 +276,20 @@ export const AddRecipeForm = () => {
                 id={'fermentable' +index}
                 value={fermentable.name}
                 onChange={onFermentableChanged}
+              />
+            </div>
+          ))}
+           <h3>Yeast</h3>
+        <button type='button' onClick={addNewYeast}>Add Yeast:</button>
+          {yeasts.map((yeast,index) => (
+            <div key={index}>
+              <label htmlFor={'yeast' +index} >Name:</label>
+              <input 
+                type="text" 
+                name='name'
+                id={'yeast' +index}
+                value={yeast.name}
+                onChange={onYeastChanged}
               />
             </div>
           ))}
