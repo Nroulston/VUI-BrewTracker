@@ -3,12 +3,15 @@ import React, { useEffect } from 'react';
 import {BrowserRouter, Switch, Route, Redirect} from 'react-router-dom'
 import {fetchUsers, checkLoginStatus} from './features/users/usersSlice'
 import './App.css';
+
 import {useDispatch } from 'react-redux'
+
 import Home from './app/Home'
 import {Login} from './features/users/Login'
 import {Signup} from './features/users/Signup'
 import {AddRecipeForm} from './features/recipe/AddRecipeForm'
-import { unwrapResult } from '@reduxjs/toolkit'
+import {ShowRecipe} from './features/recipe/ShowRecipe'
+
 
 
 function App() {
@@ -28,6 +31,7 @@ function App() {
               <Route exact path='/login' component={Login}/>
               <Route exact path='/signup' component={Signup}/>
               <Route exact path='/recipes/new' component={AddRecipeForm}/>
+              <Route exact path='/recipes/:recipeId' component={ShowRecipe}/>
               <Redirect to='/' />
             </Switch>
           </BrowserRouter>

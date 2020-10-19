@@ -18,6 +18,10 @@ const recipesSlice = createSlice({
   }
 })
 
+export const selectRecipeById = (state, recipeId) => {
+  state.recipes.recipes.find(recipe => recipe.id === recipeId)
+}
+
 export const { recipeAdded } = recipesSlice.actions
 
 export default recipesSlice.reducer

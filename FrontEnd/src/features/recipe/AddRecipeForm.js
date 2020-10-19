@@ -16,7 +16,9 @@ const _defaultHops = [
     alpha_acid: ''
   }
 ]
+
 export const AddRecipeForm = () => {
+  //TODO refactor recipe state into an object with one setter, and one onchange
   const [name, setName] = useState("")
   const [method, setMethod] = useState("")
   const [boilTime, setBoilTime] = useState("")
@@ -139,6 +141,7 @@ export const AddRecipeForm = () => {
     setMashPH('')
     setMashSchedule('')
     setBeerStyle('')
+    //TODO forward to the next page 
   }
 
   return (
