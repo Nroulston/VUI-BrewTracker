@@ -62,6 +62,14 @@ export const AddRecipeForm = () => {
     setHops(tempHops)
     
   }
+
+ 
+
+  const addNewHop = (e) => {
+    const newHops= [...hops, {name: '', form: '', alpha_acid: ''}]
+    setHops(newHops)
+  }
+
   const onSaveRecipeClicked = async () => {
     const recipe = {
       user_id: currentUser.id,
@@ -214,6 +222,7 @@ export const AddRecipeForm = () => {
           onChange={onBeerStyleChanged}
         />
         <h3>Hops</h3>
+        <button type='button' onClick={addNewHop}>Add Hops</button>
         {hops.map((hop,index) => (
         <div key={index}>
           <label htmlFor={'hop' +index} >Name:</label>
