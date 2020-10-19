@@ -33,7 +33,8 @@ export const AddRecipeForm = () => {
   const [hops, setHops] = useState(_defaultHops)
   const [fermentables, setFermentable] = useState([{name: ''}])
   const [yeasts, setYeasts] = useState([{name: ''}])
-  
+  const [adjuncts, setAdjuncts] = useState([{name: ''}])
+
   const dispatch = useDispatch()
   
   const users = useSelector(state => state.users.users)
@@ -75,14 +76,26 @@ export const AddRecipeForm = () => {
     setHops(tempHops)
   }
 
-  const onYeastChanged = () => {
-    const tempYeast = [...yeasts, {name: ''}]
-    setYeasts(tempYeast)
+  const onYeastChanged = (e) => {
+    const tempYeasts = [...yeasts]
+    tempYeasts[e.target.id[e.target.id.length - 1]][e.target.name] = e.target.value
+    setYeasts(tempYeasts)
   }
 
   const addNewYeast = () => {
     const tempYeasts = [...yeasts, {name: ''}]
     setYeasts(tempYeasts)
+  }
+
+  const onAdjunctChanged = (e) => {
+    const tempAdjuncts = [...adjuncts]
+    tempAdjuncts[e.target.id[e.target.id.length - 1]][e.target.name] = e.target.value
+    setAdjuncts(tempAdjuncts)
+  }
+
+  const addNewAdjunct = () => {
+    const tempAdjuncts = [...adjuncts, {name: ''}]
+    setAdjuncts(tempAdjuncts)
   }
 
 
@@ -105,7 +118,8 @@ export const AddRecipeForm = () => {
       style: beerStyle,
       hops_attributes: hops,
       fermentables_attributes: fermentables,
-      yeasts_attributes: yeasts
+      yeasts_attributes: yeasts,
+      other_ingredients_attributes: adjuncts
     }
    
     
@@ -290,6 +304,20 @@ export const AddRecipeForm = () => {
                 id={'yeast' +index}
                 value={yeast.name}
                 onChange={onYeastChanged}
+              />
+            </div>
+          ))}
+           <h3>Adjunct</h3>
+        <button type='button' onClick={addNewAdjunct}>Add Adjunct:</button>
+          {adjuncts.map((adjunct,index) => (
+            <div key={index}>
+              <label htmlFor={'adjunct' +index} >Name:</label>
+              <input 
+                type="text" 
+                name='name'
+                id={'adjunct' +index}
+                value={adjunct.name}
+                onChange={onAdjunctChanged}
               />
             </div>
           ))}
