@@ -13,6 +13,8 @@ import {Signup} from './features/users/Signup'
 import {AddRecipeForm} from './features/recipe/AddRecipeForm'
 import {ShowRecipe} from './features/recipe/ShowRecipe'
 import {Brewlog} from './features/brewlog/Brewlog'
+import {Dictaphone} from './features/dictaphone/Dictaphone'
+
 
 
 function App() {
