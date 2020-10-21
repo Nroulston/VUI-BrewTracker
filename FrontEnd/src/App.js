@@ -13,7 +13,7 @@ import {Signup} from './features/users/Signup'
 import {AddRecipeForm} from './features/recipe/AddRecipeForm'
 import {ShowRecipe} from './features/recipe/ShowRecipe'
 import {Brewlog} from './features/brewlog/Brewlog'
-import {Dictaphone} from './features/dictaphone/Dictaphone'
+
 
 
 
@@ -31,6 +31,8 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
+        <>
+        
         <BrowserRouter>
             <Switch>
               <Route exact path='/' component={Home}/>
@@ -42,7 +44,7 @@ function App() {
               <Redirect to='/' />
             </Switch>
           </BrowserRouter>
-        
+        </>
       </header>
     </div>
   );
