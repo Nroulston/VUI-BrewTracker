@@ -1,9 +1,23 @@
 import React, { useState } from 'react'
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
+import Button from '@material-ui/core/Button'
+import Grid from '@material-ui/core/Grid';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({
+  buttons: {
+    display: 'flex',
+    justifyContent: 'center',
+  },
+  button: {
+    marginTop: theme.spacing(3),
+    marginLeft: theme.spacing(1),
+  },
+}));
 
 const Dictaphone = ( props ) => {
   const [message, setMessage] = useState('')
-  
+  const classes = useStyles();
   
   const commands = [
     {
@@ -28,13 +42,31 @@ const Dictaphone = ( props ) => {
   
   
   return (
-    <div>
-      <button type='button' onClick={listeningFlag}>Start</button>
-      <button onClick={SpeechRecognition.stopListening}>Stop</button>
+    <Grid container spaceing={3} className={classes.buttons}>
+      <Button
+              type='button'
+              variant="contained"
+              color="primary"
+              className={classes.button}
+              onClick={listeningFlag}
+      >
+        Start Recording
+      </Button>
+      <Button
+              type='button'
+              variant="contained"
+              color="primary"
+              className={classes.button}
+              onClick={SpeechRecognition.stopListening}
+      >
+        Stop Recording
+      </Button>
+      
+    
       
       <p>{transcript}</p>
       <p>{message}</p>
-    </div>
+    </Grid>
   )
 }
 export default Dictaphone

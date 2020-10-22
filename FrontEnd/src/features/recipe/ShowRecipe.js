@@ -54,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 export const ShowRecipe = ({match}) => {
-  const [BrewlogFlag, SetBrewlogFlag] = useState(false)
+  const [BrewlogFlag, SetBrewlogFlag] = useState(true)
   const { recipeId } = match.params
   const classes = useStyles();
   const recipe = useSelector( state => selectRecipeById(state, recipeId))
