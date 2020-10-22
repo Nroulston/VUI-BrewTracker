@@ -18,6 +18,7 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 
 import RecipeStatsShow from './ingredients/RecipeStatsShow'
 import RecipeGrainsShow from './ingredients/RecipeGrainsShow'
+import RecipeHopsShow from './ingredients/RecipeHopsShow'
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -137,7 +138,7 @@ export const ShowRecipe = ({match}) => {
             
             <Grid item xs={12} sm={6} lg={3}>
               <Paper className={classes.paper}>
-                {/* <RecipeHopsShow /> */}
+                <RecipeHopsShow recipe={recipe}/>
               </Paper>
             </Grid>
           </Grid>
