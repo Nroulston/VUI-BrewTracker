@@ -32,7 +32,7 @@ const recipesSlice = createSlice({
       state.recipes = action.payload
     },
     [fetchRecipes.rejected]: (state, action) => {
-      debugger
+     
     }
   }
 })

@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
-import {Link} from 'react-router-dom'
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+import TextField from '@material-ui/core/TextField';
 import { useDispatch, useSelector } from 'react-redux'
 import {recipeAdded} from './recipesSlice'
+import Button from '@material-ui/core/Button'
 
 import axios from 'axios'
+import { TextareaAutosize } from '@material-ui/core';
 const _defaultHops = [
   {
     name: '',
@@ -144,156 +148,8 @@ export const AddRecipeForm = () => {
 
   return (
     <section>
-
-      <h2>Add a New Recipe</h2>
       <form >
-        <label htmlFor="recipeName">Recipe name:</label>
-        <input 
-          type="text" 
-          name="recipeName" 
-          id="recipeName"
-          value={name}
-          onChange={onNameChanged}
-        />
-        <label htmlFor="recipeMethod">method:</label>
-        <input
-          name="recipeMethod" 
-          id="recipeMethod"
-          value={method}
-          onChange={onMethodChanged}
-        />
-        <label htmlFor="recipeBoilTime">Boil Time:</label>
-        <input 
-          type="text" 
-          name="recipeBoilTime" 
-          id="recipeBoilTime"
-          value={boilTime}
-          onChange={onBoilTimeChanged}
-        />
-        <label htmlFor="recipeBatchSize">Batch Size:</label>
-        <input 
-          type="text" 
-          name="recipeBatchSize" 
-          id="recipeBatchSize"
-          value={batchSize}
-          onChange={onBatchSizeChanged}
-        />
-        <label htmlFor="recipePreBoilSize">Pre-Boil size:</label>
-        <input 
-          type="text" 
-          name="recipePreBoilSize" 
-          id="recipePreBoilSize"
-          value={preBoilSize}
-          onChange={onPreBoilSizeChanged}
-        />
-        <label htmlFor="recipePreBoilGravity">Pre-Boil Gravity:</label>
-        <input 
-          type="text" 
-          name="recipePreBoilGravity" 
-          id="recipePreBoilGravity"
-          value={preBoilGravity}
-          onChange={onPreBoilGravityChanged}
-        />
-        <label htmlFor="recipeTargetFG"> Target FG:</label>
-        <input 
-          type="text" 
-          name="recipeTargetFG" 
-          id="recipeTargetFG"
-          value={targetFG}
-          onChange={onTargetFGChanged}
-        />
-        <label htmlFor="recipeTargetOG">Target OG:</label>
-        <input 
-          type="text" 
-          name="recipeTargetOG" 
-          id="recipeTargetOG"
-          value={targetOG}
-          onChange={onTargetOGChanged}
-        />
-        <label htmlFor="recipeIbu">IBU's:</label>
-        <input 
-          type="text" 
-          name="recipeIbu" 
-          id="recipeIbu"
-          value={ibu}
-          onChange={onIbuChanged}
-        />
-        <label htmlFor="recipeSRM">SRM:</label>
-        <input 
-          type="text" 
-          name="recipeSRM" 
-          id="recipeSRM"
-          value={srm}
-          onChange={onSrmChanged}
-        />
-        <label htmlFor="recipeMashPH">Mash PH:</label>
-        <input 
-          type="text" 
-          name="recipeMashPH" 
-          id="recipeMashPH"
-          value={mashPH}
-          onChange={onMashPHChanged}
-        />
-        <label htmlFor="recipeMashSchedule">Mash Schedule:</label>
-        <input 
-          type="text" 
-          name="recipeMashSchedule" 
-          id="recipeMashSchedule"
-          value={mashSchedule}
-          onChange={onMashScheduleChanged}
-        />
-        <label htmlFor="recipeBeerStyle">Beer Style:</label>
-        <input 
-          type="text" 
-          name="recipeBeerStyle" 
-          id="recipeBeerStyle"
-          value={beerStyle}
-          onChange={onBeerStyleChanged}
-        />
-        <h3>Hops</h3>
-        <button type='button' onClick={addNewHop}>Add Hops</button>
-        {hops.map((hop,index) => (
-        <div key={index}>
-          <label htmlFor={'hop' +index} >Name:</label>
-          <input 
-            type="text" 
-            name='name'
-            id={'hop' +index}
-            value={hop.name}
-            onChange={onHopChanged}
-          />
-          <label htmlFor={'hopForm' + index} > Form:</label>
-          <input 
-            type="text" 
-            name='form'
-            id={'hopForm' + index}
-            value={hop.form}
-            onChange={onHopChanged}
-          />
-          <label htmlFor={'hopAlphaAcid' + index} > Alpha Acid:</label>
-          <input 
-            type="text" 
-            name='alpha_acid'
-            id={'hopFormAlphaAcid' + index}
-            value={hop.alpha_acid}
-            onChange={onHopChanged}
-          />
-        </div>
-      ))}
-        <h3>Fermentable</h3>
-        <button type='button' onClick={addNewFermentable}>Add Fermentable</button>
-          {fermentables.map((fermentable,index) => (
-            <div key={index}>
-              <label htmlFor={'fermentable' +index} >Name:</label>
-              <input 
-                type="text" 
-                name='name'
-                id={'fermentable' +index}
-                value={fermentable.name}
-                onChange={onFermentableChanged}
-              />
-            </div>
-          ))}
+        
            <h3>Yeast</h3>
         <button type='button' onClick={addNewYeast}>Add Yeast:</button>
           {yeasts.map((yeast,index) => (
@@ -326,6 +182,248 @@ export const AddRecipeForm = () => {
           Save Recipe
         </button>
       </form>
+      <React.Fragment>
+      <Typography variant="h6" gutterBottom>
+        Recipe Specs
+      </Typography>
+      <Grid container spacing={3}>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            required
+            label="Name"
+            fullWidth
+            name="recipeName" 
+            id="recipeName"
+            value={name}
+            onChange={onNameChanged}
+          />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            required
+            name="recipeBeerStyle" 
+          id="recipeBeerStyle"
+          value={beerStyle}
+          onChange={onBeerStyleChanged}
+            label="Style"
+            fullWidth
+          />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            required
+            name="recipeMethod" 
+            id="recipeMethod"
+            value={method}
+            onChange={onMethodChanged}
+            label="Method"
+            fullWidth
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <TextField
+            required
+            name="recipeBoilTime" 
+            id="recipeBoilTime"
+            value={boilTime}
+            onChange={onBoilTimeChanged}
+            label="Boil Time"
+            fullWidth
+         
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <TextField
+            name="recipeBatchSize" 
+            id="recipeBatchSize"
+            value={batchSize}
+            onChange={onBatchSizeChanged}
+            label="Batch Size"
+            fullWidth
+          />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            required
+            name="recipePreBoilSize" 
+            id="recipePreBoilSize"
+            value={preBoilSize}
+            onChange={onPreBoilSizeChanged}
+            label="Preboil Size"
+            fullWidth
+          
+          />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField id="state" name="state" label="State/Province/Region" fullWidth />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            required
+            name="recipePreBoilGravity" 
+            id="recipePreBoilGravity"
+            value={preBoilGravity}
+            onChange={onPreBoilGravityChanged}
+            label="Preboil Gravity"
+            fullWidth
+          
+          />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            required
+            name="recipeTargetFG" 
+            id="recipeTargetFG"
+            value={targetFG}
+            onChange={onTargetFGChanged}
+            label="Target Final Gravity"
+            fullWidth
+      
+          />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            required
+            name="recipeTargetOG" 
+            id="recipeTargetOG"
+            value={targetOG}
+            onChange={onTargetOGChanged}
+            label="Target Original Gravity"
+            fullWidth
+          />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            required
+            name="recipeIbu" 
+          id="recipeIbu"
+          value={ibu}
+          onChange={onIbuChanged}
+            label="IBU's"
+            fullWidth
+          />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            required
+            name="recipeSRM" 
+          id="recipeSRM"
+          value={srm}
+          onChange={onSrmChanged}
+            label="SRM"
+            fullWidth
+          />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            required
+            name="recipeMashPH" 
+          id="recipeMashPH"
+          value={mashPH}
+          onChange={onMashPHChanged}
+            label="Mash PH"
+            fullWidth
+          />
+        </Grid>
+        <Grid item xs={12}>
+        <TextField
+          placeholder="Type as much as you need"
+          multiline
+          rows={4}
+          rowsMax={4}
+          fullWidth
+          name="recipeMashSchedule" 
+          id="recipeMashSchedule"
+          value={mashSchedule}
+          onChange={onMashScheduleChanged}
+          label='Mash Schedule'
+
+  
+          />
+        </Grid>
+        <Grid container
+          direction="row"
+          justify="space-between"
+          alignItems="center">
+        <Typography variant="h6" gutterBottom>
+        Hops
+        </Typography>
+
+      <Button variant="contained" color="primary"  onClick={addNewHop}>
+        Add Hops
+      </Button>
+      </Grid>
+
+      {hops.map((hop,index) => (
+        <div key={index}>
+              <Grid>
+       
+          <TextField
+            required
+            name='name'
+            id={'hop' +index}
+            value={hop.name}
+            onChange={onHopChanged}
+            label="Name"
+            
+          />
+          
+          <TextField
+            required
+            name='form'
+            id={'hopForm' + index}
+            value={hop.form}
+            onChange={onHopChanged}
+            label="Form"
+            
+          />
+         
+          
+          <TextField
+            required
+            name='alpha_acid'
+            id={'hopFormAlphaAcid' + index}
+            value={hop.alpha_acid}
+            onChange={onHopChanged}
+            label="Alpha Acid"
+            
+          />
+          
+          </Grid>
+          </div>
+          ))},
+           <Grid container
+          direction="row"
+          justify="space-between"
+          alignItems="center">
+        <Typography variant="h6" gutterBottom>
+        Fermentables
+        </Typography>
+
+      <Button variant="contained" color="primary" onClick={addNewFermentable} >
+        Add Fermentable
+      </Button>
+      </Grid>
+
+      {fermentables.map((fermentable,index) => (
+            <div key={index}>
+              <Grid>
+       
+          <TextField
+            required
+            name='name'
+            id={'fermentable' +index}
+            value={fermentable.name}
+            onChange={onFermentableChanged}
+            label="Name"
+            
+          />
+          </Grid>
+          </div>
+          ))},
+      </Grid>
+      
+    </React.Fragment>
     </section>
   )
   
