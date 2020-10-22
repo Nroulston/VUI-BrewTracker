@@ -37,9 +37,6 @@ const useStyles = makeStyles((theme) => ({
       padding: theme.spacing(3),
     },
   },
-  stepper: {
-    padding: theme.spacing(3, 0, 5),
-  },
   buttons: {
     display: 'flex',
     justifyContent: 'flex-end',
@@ -69,20 +66,8 @@ export const RecipeFormContainer = () => {
             Add Recipe
           </Typography>
           <React.Fragment>
-                <AddRecipeForm/>
-                <div className={classes.buttons}>
-                    <Button className={classes.button}>
-                      Back
-                    </Button>
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    
-                    className={classes.button}
-                  >
-                    Next
-                  </Button>
-                </div>
+                <AddRecipeForm classes={classes}/>
+                
               </React.Fragment>
         </Paper>
 

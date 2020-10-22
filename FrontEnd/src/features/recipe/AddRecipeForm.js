@@ -21,7 +21,7 @@ const _defaultHops = [
   }
 ]
 
-export const AddRecipeForm = () => {
+export const AddRecipeForm = (props) => {
   //TODO refactor recipe state into an object with one setter, and one onchange
   const [name, setName] = useState("")
   const [method, setMethod] = useState("")
@@ -147,42 +147,7 @@ export const AddRecipeForm = () => {
   }
 
   return (
-    <section>
-      <form >
-        
-           <h3>Yeast</h3>
-        <button type='button' onClick={addNewYeast}>Add Yeast:</button>
-          {yeasts.map((yeast,index) => (
-            <div key={index}>
-              <label htmlFor={'yeast' +index} >Name:</label>
-              <input 
-                type="text" 
-                name='name'
-                id={'yeast' +index}
-                value={yeast.name}
-                onChange={onYeastChanged}
-              />
-            </div>
-          ))}
-           <h3>Adjunct</h3>
-        <button type='button' onClick={addNewAdjunct}>Add Adjunct:</button>
-          {adjuncts.map((adjunct,index) => (
-            <div key={index}>
-              <label htmlFor={'adjunct' +index} >Name:</label>
-              <input 
-                type="text" 
-                name='name'
-                id={'adjunct' +index}
-                value={adjunct.name}
-                onChange={onAdjunctChanged}
-              />
-            </div>
-          ))}
-        <button type="button" onClick={onSaveRecipeClicked} >
-          Save Recipe
-        </button>
-      </form>
-      <React.Fragment>
+    <React.Fragment>
       <Typography variant="h6" gutterBottom>
         Recipe Specs
       </Typography>
@@ -251,11 +216,7 @@ export const AddRecipeForm = () => {
             onChange={onPreBoilSizeChanged}
             label="Preboil Size"
             fullWidth
-          
           />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField id="state" name="state" label="State/Province/Region" fullWidth />
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
@@ -266,7 +227,6 @@ export const AddRecipeForm = () => {
             onChange={onPreBoilGravityChanged}
             label="Preboil Gravity"
             fullWidth
-          
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -326,105 +286,150 @@ export const AddRecipeForm = () => {
           />
         </Grid>
         <Grid item xs={12}>
-        <TextField
-          placeholder="Type as much as you need"
-          multiline
-          rows={4}
-          rowsMax={4}
-          fullWidth
-          name="recipeMashSchedule" 
-          id="recipeMashSchedule"
-          value={mashSchedule}
-          onChange={onMashScheduleChanged}
-          label='Mash Schedule'
-
-  
+          <TextField
+            placeholder="Type as much as you need"
+            multiline
+            rows={4}
+            rowsMax={4}
+            fullWidth
+            name="recipeMashSchedule" 
+            id="recipeMashSchedule"
+            value={mashSchedule}
+            onChange={onMashScheduleChanged}
+            label='Mash Schedule'
           />
         </Grid>
         <Grid container
           direction="row"
           justify="space-between"
           alignItems="center">
-        <Typography variant="h6" gutterBottom>
-        Hops
-        </Typography>
+          <Typography variant="h6" gutterBottom>
+            Hops
+          </Typography>
 
-      <Button variant="contained" color="primary"  onClick={addNewHop}>
-        Add Hops
-      </Button>
-      </Grid>
-
-      {hops.map((hop,index) => (
-        <div key={index}>
-              <Grid>
-       
-          <TextField
-            required
-            name='name'
-            id={'hop' +index}
-            value={hop.name}
-            onChange={onHopChanged}
-            label="Name"
-            
-          />
-          
-          <TextField
-            required
-            name='form'
-            id={'hopForm' + index}
-            value={hop.form}
-            onChange={onHopChanged}
-            label="Form"
-            
-          />
-         
-          
-          <TextField
-            required
-            name='alpha_acid'
-            id={'hopFormAlphaAcid' + index}
-            value={hop.alpha_acid}
-            onChange={onHopChanged}
-            label="Alpha Acid"
-            
-          />
-          
-          </Grid>
+          <Button variant="contained" color="primary"  onClick={addNewHop}>
+            Add Hops
+          </Button>
+        </Grid>
+        {hops.map((hop,index) => (
+          <div key={index}>
+            <Grid>
+              <TextField
+                required
+                name='name'
+                id={'hop' +index}
+                value={hop.name}
+                onChange={onHopChanged}
+                label="Name"
+              />
+              <TextField
+                required
+                name='form'
+                id={'hopForm' + index}
+                value={hop.form}
+                onChange={onHopChanged}
+                label="Form"
+              />
+              <TextField
+                required
+                name='alpha_acid'
+                id={'hopFormAlphaAcid' + index}
+                value={hop.alpha_acid}
+                onChange={onHopChanged}
+                label="Alpha Acid"
+              />
+            </Grid>
           </div>
-          ))},
-           <Grid container
+        ))},
+        <Grid container
           direction="row"
           justify="space-between"
           alignItems="center">
-        <Typography variant="h6" gutterBottom>
-        Fermentables
-        </Typography>
-
-      <Button variant="contained" color="primary" onClick={addNewFermentable} >
-        Add Fermentable
-      </Button>
-      </Grid>
-
-      {fermentables.map((fermentable,index) => (
-            <div key={index}>
-              <Grid>
-       
-          <TextField
-            required
-            name='name'
-            id={'fermentable' +index}
-            value={fermentable.name}
-            onChange={onFermentableChanged}
-            label="Name"
-            
-          />
-          </Grid>
+          <Typography variant="h6" gutterBottom>
+            Fermentables
+          </Typography>
+          <Button variant="contained" color="primary" onClick={addNewFermentable} >
+            Add Fermentable
+          </Button>
+        </Grid>
+        {fermentables.map((fermentable,index) => (
+          <div key={index}>
+            <Grid >
+              <TextField
+                required
+                name='name'
+                id={'fermentable' +index}
+                value={fermentable.name}
+                onChange={onFermentableChanged}
+                label="Name"
+                fullWidth
+              />
+            </Grid>
           </div>
-          ))},
+        ))},
+        <Grid container
+        direction="row"
+        justify="space-between"
+        alignItems="center">
+          <Typography variant="h6" gutterBottom>
+            Yeast
+          </Typography>
+
+          <Button variant="contained" color="primary" onClick={addNewYeast} >
+            Add Yeast
+          </Button>
+        </Grid>
+        {yeasts.map((yeast,index) => (
+          <div key={index}>
+            <Grid>
+              <TextField
+                required
+                name='name'
+                id={'yeast' +index}
+                value={yeast.name}
+                onChange={onYeastChanged}
+                label="Name"
+              />
+            </Grid>
+          </div>
+        ))},
+        <Grid container
+          direction="row"
+          justify="space-between"
+          alignItems="center">
+          <Typography variant="h6" gutterBottom>
+            Adjunct
+          </Typography>
+
+          <Button className={props.classes.buttons} variant="contained" color="primary" onClick={addNewAdjunct} >
+            Add Adjunct
+          </Button>
+        </Grid>
+        {adjuncts.map((adjunct,index) => (
+          <div key={index}>
+            <Grid>
+              <TextField
+                required
+                name='name'
+                id={'adjunct' +index}
+                value={adjunct.name}
+                onChange={onAdjunctChanged}
+                label="Name"
+              />
+            </Grid>
+          </div>
+        ))},
       </Grid>
-      
+      <div className={props.classes.buttons}>
+        <Button
+          variant="contained"
+          color="primary"
+          className={props.classes.button}
+          onSubmit={onSaveRecipeClicked}
+        >
+          Submit
+        </Button>
+      </div>
     </React.Fragment>
-    </section>
   )
-  
 }
