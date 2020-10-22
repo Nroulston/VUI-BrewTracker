@@ -71,9 +71,9 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     padding: theme.spacing(2),
-    display: 'flex',
+    
     overflow: 'auto',
-    flexDirection: 'column',
+   
   },
   fixedHeight: {
     height: 240,
@@ -125,19 +125,19 @@ export const ShowRecipe = ({match}) => {
           <Grid container spacing={3}>
       
             <Grid item xs={12} >
-              <Paper className={fixedHeightPaper}>
+              <Paper className={classes.paper} >
                 <RecipeStatsShow recipe={recipe} />
               </Paper>
             </Grid>
             
-            <Grid item xs={12} sm={6} lg={3}>
-              <Paper className={fixedHeightPaper}>
+            <Grid item xs>
+              <Paper>
                 <RecipeGrainsShow recipe={recipe} />
               </Paper>
             </Grid>
             
-            <Grid item xs={12} sm={6} lg={3}>
-              <Paper className={classes.paper}>
+            <Grid item xs>
+              <Paper >
                 <RecipeHopsShow recipe={recipe}/>
               </Paper>
             </Grid>
