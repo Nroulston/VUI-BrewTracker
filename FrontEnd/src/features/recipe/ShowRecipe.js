@@ -137,10 +137,10 @@ export const ShowRecipe = ({match}) => {
             </Grid>
           </Grid>
           <Grid> 
-            <Paper>
+           
               {BrewlogFlag && <Brewlog />}
             
-            </Paper>
+          
           </Grid>
         </Container>
       </main>
