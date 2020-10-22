@@ -20,51 +20,15 @@ import RecipeStatsShow from './ingredients/RecipeStatsShow'
 import RecipeGrainsShow from './ingredients/RecipeGrainsShow'
 import RecipeHopsShow from './ingredients/RecipeHopsShow'
 import RecipeYeastsShow from './ingredients/RecipeYeastsShow'
+import RecipeAdjunctsShow from './ingredients/RecipeAdjunctsShow'
+
 const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-  },
-  toolbar: {
-    paddingRight: 24, // keep right padding when drawer closed
-  },
-  toolbarIcon: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-    padding: '0 8px',
-    ...theme.mixins.toolbar,
-  },
   appBar: {
-    zIndex: theme.zIndex.drawer + 1,
-    transition: theme.transitions.create(['width', 'margin'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
+    position: 'relative',
   },
  
-  menuButton: {
-    marginRight: 36,
-  },
-  menuButtonHidden: {
-    display: 'none',
-  },
   title: {
     flexGrow: 1,
-  },
-  drawerPaper: {
-    position: 'relative',
-    whiteSpace: 'nowrap',
-    transition: theme.transitions.create('width', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  },
- 
-  appBarSpacer: theme.mixins.toolbar,
-  content: {
-    flexGrow: 1,
-    height: '100vh',
-    overflow: 'auto',
   },
   container: {
     paddingTop: theme.spacing(4),
@@ -72,9 +36,7 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     padding: theme.spacing(2),
-    
     overflow: 'auto',
-   
   },
   fixedHeight: {
     height: 240,
@@ -86,57 +48,38 @@ export const ShowRecipe = ({match}) => {
   const { recipeId } = match.params
   const classes = useStyles();
   const recipe = useSelector( state => selectRecipeById(state, recipeId))
-  const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
+  // const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
   if(!recipe) {
     return (
       <section>
-        
-
         <h2>Post not found!</h2>
       </section>
     )
   }
-
   return(
     <div className={classes.root}>
       <CssBaseline />
-      <AppBar position="absolute" className={clsx(classes.appBar)}>
-        <Toolbar className={classes.toolbar}>
-          <IconButton
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            className={clsx(classes.menuButton)}
-          >
-            <MenuIcon />
-          </IconButton>
+      <AppBar className={classes.appBar}>
+        <Toolbar>
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
             Dashboard
           </Typography>
-          <IconButton color="inherit">
-            <Badge badgeContent={4} color="secondary">
-              <NotificationsIcon />
-            </Badge>
-          </IconButton>
         </Toolbar>
       </AppBar>
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={3}>
-      
             <Grid item xs={12} >
               <Paper className={classes.paper} >
                 <RecipeStatsShow recipe={recipe} />
               </Paper>
             </Grid>
-            
             <Grid item xs>
               <Paper>
                 <RecipeGrainsShow recipe={recipe} />
               </Paper>
             </Grid>
-            
             <Grid item xs>
               <Paper >
                 <RecipeHopsShow recipe={recipe}/>
@@ -145,6 +88,11 @@ export const ShowRecipe = ({match}) => {
             <Grid item xs>
               <Paper >
                 <RecipeYeastsShow recipe={recipe}/>
+              </Paper>
+            </Grid>
+            <Grid item xs>
+              <Paper >
+                <RecipeAdjunctsShow recipe={recipe}/>
               </Paper>
             </Grid>
           </Grid>
