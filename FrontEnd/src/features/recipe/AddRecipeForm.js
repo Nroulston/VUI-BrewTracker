@@ -107,7 +107,8 @@ export const AddRecipeForm = (props) => {
 
 
   const onSaveRecipeClicked = async () => {
-    const recipe = {
+    debugger
+    const recipe = { 
       user_id: currentUser.id,
       name,
       method,
@@ -422,10 +423,11 @@ export const AddRecipeForm = (props) => {
       </Grid>
       <div className={props.classes.buttons}>
         <Button
+          type='button'
           variant="contained"
           color="primary"
           className={props.classes.button}
-          onSubmit={onSaveRecipeClicked}
+          onClick={onSaveRecipeClicked}
         >
           Submit
         </Button>
