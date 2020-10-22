@@ -8,7 +8,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
+import Button from '@material-ui/core/Button';
 import Badge from '@material-ui/core/Badge';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
@@ -41,6 +41,14 @@ const useStyles = makeStyles((theme) => ({
   fixedHeight: {
     height: 240,
   },
+  buttons: {
+    display: 'flex',
+    justifyContent: 'center',
+  },
+  button: {
+    marginTop: theme.spacing(3),
+    marginLeft: theme.spacing(1),
+  },
 }));
 
 
@@ -62,13 +70,35 @@ export const ShowRecipe = ({match}) => {
       <AppBar className={classes.appBar}>
         <Toolbar>
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-            Dashboard
+            Your Company
           </Typography>
         </Toolbar>
       </AppBar>
       <main className={classes.content}>
-        <div className={classes.appBarSpacer} />
-        <Container maxWidth="lg" className={classes.container}>
+          <Container maxWidth="lg" className={classes.container}>
+          <Typography component="h1" variant="h4" align="center">
+              {recipe.name}
+          </Typography>
+          <div className={classes.buttons}>
+            <Button
+              type='button'
+              variant="contained"
+              color="primary"
+              className={classes.button}
+              onClick={""}
+            >
+              Edit
+            </Button>
+            <Button
+              type='button'
+              variant="contained"
+              color="primary"
+              className={classes.button}
+              onClick={""}
+            >
+              Start BrewLog
+            </Button>
+          </div>
           <Grid container spacing={3}>
             <Grid item xs={12} >
               <Paper className={classes.paper} >
