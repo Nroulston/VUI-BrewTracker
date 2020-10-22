@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { useSelector } from 'react-redux'
 import {selectRecipeById} from './recipesSlice'
 
@@ -21,6 +21,7 @@ import RecipeGrainsShow from './ingredients/RecipeGrainsShow'
 import RecipeHopsShow from './ingredients/RecipeHopsShow'
 import RecipeYeastsShow from './ingredients/RecipeYeastsShow'
 import RecipeAdjunctsShow from './ingredients/RecipeAdjunctsShow'
+import {Brewlog} from '../brewlog/Brewlog'
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -53,10 +54,19 @@ const useStyles = makeStyles((theme) => ({
 
 
 export const ShowRecipe = ({match}) => {
+  const [BrewlogFlag, SetBrewlogFlag] = useState(false)
   const { recipeId } = match.params
   const classes = useStyles();
   const recipe = useSelector( state => selectRecipeById(state, recipeId))
+  
+  const startBrewlog = () => {
+    SetBrewlogFlag(true)
+  }
+  
+ 
   // const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
+  
+  
   if(!recipe) {
     return (
       <section>
@@ -94,7 +104,7 @@ export const ShowRecipe = ({match}) => {
               variant="contained"
               color="primary"
               className={classes.button}
-              onClick={""}
+              onClick={startBrewlog}
             >
               Start BrewLog
             </Button>
@@ -125,6 +135,12 @@ export const ShowRecipe = ({match}) => {
                 <RecipeAdjunctsShow recipe={recipe}/>
               </Paper>
             </Grid>
+          </Grid>
+          <Grid> 
+            <Paper>
+              {BrewlogFlag && <Brewlog />}
+            
+            </Paper>
           </Grid>
         </Container>
       </main>

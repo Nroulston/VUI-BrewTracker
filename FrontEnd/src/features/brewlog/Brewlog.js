@@ -14,9 +14,7 @@ export const Brewlog = () => {
     setBrewLog(tempBrewLog)
   }
 
-  const setOGValue = () => {
-
-  }
+  
 
   useEffect(() => {
     console.log(brewLog)
