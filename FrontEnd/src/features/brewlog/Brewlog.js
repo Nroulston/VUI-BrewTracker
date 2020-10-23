@@ -1,4 +1,10 @@
 import React, { useState } from 'react';
+import { useDispatch} from 'react-redux'
+import {brewlogAdded} from './brewlogSlice'
+import axios from 'axios'
+
+
+//MUI imports
 import Dictaphone from '../dictaphone/Dictaphone'
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -7,7 +13,9 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
-import axios from 'axios'
+
+
+const localHost = 'http://localhost:3001'
 
 const useStyles = makeStyles((theme) => ({
 
@@ -42,22 +50,32 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const Brewlog = () => {
+export const Brewlog = ({recipe}) => {
   const [brewLog, setBrewLog] = useState({
-     og: '0',
+    recipe_id: recipe.id, 
+    og: '0',
     strikeVolume: '0',
     strikeTemp: '0',
     mashPH: '0'
+  
   })
+  const dispatch = useDispatch()
+
+
   const classes = useStyles()
   const onBrewLogChanged = e => {
    
     const tempBrewLog = {...brewLog}
     tempBrewLog[e.target.name] = e.target.value
     setBrewLog(tempBrewLog)
+  
   }
 
-  const submitBrewLog = () => {
+
+  const submitBrewLog = async() => {
+    const response = await axios.post(`${localHost}/brewlog`, {brewLog}, {withCredentials:true})
+    
+    dispatch(brewlogAdded(response.data.brew_log))
 
   }
 
@@ -91,8 +109,6 @@ export const Brewlog = () => {
                 id='strikeTemp'
                 onChange={onBrewLogChanged}
                 value={brewLog.strikeTemp}
-                
-             
               />
             </Grid>  
             <Grid item xs={12} sm={3}>
