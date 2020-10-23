@@ -71,7 +71,6 @@ export const Brewlog = ({recipe}) => {
   
   }
 
-
   const submitBrewLog = async() => {
     const response = await axios.post(`${localHost}/brewlog`, {brewLog}, {withCredentials:true})
     
