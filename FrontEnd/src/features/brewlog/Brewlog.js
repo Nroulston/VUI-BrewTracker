@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch} from 'react-redux'
+import { useDispatch, useSelector} from 'react-redux'
 import {brewlogAdded} from './brewlogSlice'
 import axios from 'axios'
 
@@ -51,31 +51,37 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export const Brewlog = ({recipe}) => {
-  const [brewLog, setBrewLog] = useState({
+  const currentUser = useSelector( state => state.users.currentUser)
+
+  const [brewlog, setBrewlog] = useState({
     recipe_id: recipe.id, 
     og: '0',
     strikeVolume: '0',
     strikeTemp: '0',
-    mashPH: '0'
-  
+    mashPH: '0',
+    currentUser
   })
+  const brew_log = {
+    recipe_id: recipe.id,
+    original_gravity: brewlog.og,
+    strike_volume: brewlog.strikeVolume,
+    strike_temp: brewlog.strikeTemp,
+    mash_pH: brewlog.mashPH,
+    user_id: currentUser.id
+  }
   const dispatch = useDispatch()
-
-
   const classes = useStyles()
-  const onBrewLogChanged = e => {
-   
-    const tempBrewLog = {...brewLog}
-    tempBrewLog[e.target.name] = e.target.value
-    setBrewLog(tempBrewLog)
-  
+
+  const onBrewlogChanged = e => { 
+    const tempBrewlog = {...brewlog}
+    tempBrewlog[e.target.name] = e.target.value
+    setBrewlog(tempBrewlog)
   }
 
-  const submitBrewLog = async() => {
-    const response = await axios.post(`${localHost}/brewlog`, {brewLog}, {withCredentials:true})
-    
-    dispatch(brewlogAdded(response.data.brew_log))
-
+  const submitBrewlog = async() => {
+    const response = await axios.post(`${localHost}/brewlogs`, {brew_log}, {withCredentials:true})
+   
+    dispatch(brewlogAdded(response.data.brewlog))
   }
 
   return(
@@ -86,7 +92,7 @@ export const Brewlog = ({recipe}) => {
           <Typography component="h1" variant="h4" align="center">
            BrewLog
           </Typography>
-          <Dictaphone setBrewLog={setBrewLog} />
+          <Dictaphone setBrewlog={setBrewlog} />
           <Grid container spacing={3}>
             <Grid item xs={12} sm={3}>
               <TextField
@@ -95,8 +101,8 @@ export const Brewlog = ({recipe}) => {
                 label="Strike Volume"
                 name="strikeVolume" 
                 id='strikeVolume'
-                onChange={onBrewLogChanged}
-                value={brewLog.strikeVolume}
+                onChange={onBrewlogChanged}
+                value={brewlog.strikeVolume}
               />
             </Grid>  
             <Grid item xs={12} sm={3}>
@@ -106,8 +112,8 @@ export const Brewlog = ({recipe}) => {
                 label="Strike Temp"
                 name="strikeTemp" 
                 id='strikeTemp'
-                onChange={onBrewLogChanged}
-                value={brewLog.strikeTemp}
+                onChange={onBrewlogChanged}
+                value={brewlog.strikeTemp}
               />
             </Grid>  
             <Grid item xs={12} sm={3}>
@@ -117,8 +123,8 @@ export const Brewlog = ({recipe}) => {
                 label="Mash PH"
                 name="mashPH" 
                 id='mashPH'
-                onChange={onBrewLogChanged}
-                value={brewLog.mashPH}
+                onChange={onBrewlogChanged}
+                value={brewlog.mashPH}
               />
             </Grid>  
             <Grid item xs={12} sm={3}>
@@ -128,8 +134,8 @@ export const Brewlog = ({recipe}) => {
                 label="Original Gravity"
                 name="og" 
                 id='OG'
-                onChange={onBrewLogChanged}
-                value={brewLog.og}
+                onChange={onBrewlogChanged}
+                value={brewlog.og}
                 
                 
               />
@@ -141,7 +147,7 @@ export const Brewlog = ({recipe}) => {
                   variant="contained"
                   color="primary"
                   className={classes.button}
-                  onClick={submitBrewLog}
+                  onClick={submitBrewlog}
                 >
                   Submit
                 </Button>

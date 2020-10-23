@@ -16,9 +16,9 @@ ActiveRecord::Schema.define(version: 2020_10_17_190249) do
     t.integer "user_id"
     t.integer "recipe_id"
     t.string "strike_volume"
-    t.string "string_temp"
+    t.string "strike_temp"
     t.string "mash_pH"
-    t.string "orginal_gravity"
+    t.string "original_gravity"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
