@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import {BrowserRouter, Switch, Route, Redirect} from 'react-router-dom'
 import {fetchUsers, checkLoginStatus} from './features/users/usersSlice'
 import { fetchRecipes } from './features/recipe/recipesSlice'
+import { fetchBrewlogs } from './features/brewlog/brewlogSlice'
 import {useDispatch } from 'react-redux'
 import Home from './app/Home'
 import {Login} from './features/users/Login'
@@ -14,7 +15,6 @@ import {RecipeFormContainer} from './features/recipe/RecipeFormContainer'
 
 
 
-
 function App() {
   const dispatch = useDispatch()
 
@@ -22,6 +22,8 @@ function App() {
     dispatch(fetchUsers())
     dispatch(checkLoginStatus())
     dispatch(fetchRecipes())
+    dispatch(fetchBrewlogs())
+    
   })
 
   return (

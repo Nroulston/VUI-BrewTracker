@@ -12,11 +12,6 @@ export const fetchRecipes = createAsyncThunk('recipes/fetchRecipes', async() => 
  
   return response.data
 })
-export const fetchUsers = createAsyncThunk('users/fetchUsers', async() => {
-  const response = await axios.get(`${localHost}/users`, {withCredentials:true})
-  return response.data.users
-})
-
 
 const recipesSlice = createSlice({
   name: 'recipes',

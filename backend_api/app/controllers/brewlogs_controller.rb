@@ -1,6 +1,10 @@
 class BrewlogsController < ApplicationController
   def index
-
+    
+    brewlogs = BrewLog.all
+    render json: {
+      brewlogs: brewlogs
+    }
   end
 
   def create
