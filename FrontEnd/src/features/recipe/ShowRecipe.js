@@ -22,7 +22,7 @@ import RecipeHopsShow from './ingredients/RecipeHopsShow'
 import RecipeYeastsShow from './ingredients/RecipeYeastsShow'
 import RecipeAdjunctsShow from './ingredients/RecipeAdjunctsShow'
 import {Brewlog} from '../brewlog/Brewlog'
-
+import BrewlogListRecipeShow from '../brewlog/BrewlogListRecipeShow'
 const useStyles = makeStyles((theme) => ({
   appBar: {
     position: 'relative',
@@ -54,13 +54,13 @@ const useStyles = makeStyles((theme) => ({
 
 
 export const ShowRecipe = ({match}) => {
-  const [BrewlogFlag, SetBrewlogFlag] = useState(true)
+  const [BrewlogFlag, SetBrewlogFlag] = useState(false)
   const { recipeId } = match.params
   const classes = useStyles();
   const recipe = useSelector( state => selectRecipeById(state, recipeId))
   
   const startBrewlog = () => {
-    SetBrewlogFlag(false)
+    SetBrewlogFlag(true)
   }
   
  
@@ -139,6 +139,11 @@ export const ShowRecipe = ({match}) => {
             <Grid item xs>
               <Paper >
                 <RecipeAdjunctsShow recipe={recipe}/>
+              </Paper>
+            </Grid>
+            <Grid item xs>
+              <Paper >
+                <BrewlogListRecipeShow recipe={recipe}/>
               </Paper>
             </Grid>
           </Grid>
