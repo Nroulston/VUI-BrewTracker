@@ -18,18 +18,30 @@ const useStyles = makeStyles((theme) => ({
 const Dictaphone = ( props ) => {
   const [message, setMessage] = useState('')
   const classes = useStyles();
-  
+   //TODO use Node Package to convert words to numbers so you don't have to say number to make sure it is recorded as a number
   const commands = [
     {
-      command: 'record strike temperature *',
+      command: 'record strike temperature number *',
       callback: (temp) => { 
       props.setBrewLog({ strikeTemp: `${temp}` })
       }
     },
     {
-      command: 'record strike volume *',
+      command: 'record strike volume number *',
       callback: (vol) => { 
       props.setBrewLog({ strikeVolume: `${vol}` })
+      }
+    },
+    {
+      command: 'record Mash pH number *',
+      callback: (ph) => { 
+      props.setBrewLog({ mashPH: `${ph}` })
+      }
+    },
+    {
+      command: 'record Original Gravity number *',
+      callback: (og) => { 
+      props.setBrewLog({ og: `${og}` })
       }
     },
     {

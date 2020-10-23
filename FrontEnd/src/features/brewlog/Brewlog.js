@@ -18,6 +18,7 @@ import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 
+
 const useStyles = makeStyles((theme) => ({
 
   layout: {
@@ -53,14 +54,14 @@ const useStyles = makeStyles((theme) => ({
 
 export const Brewlog = () => {
   const [brewLog, setBrewLog] = useState({
-     og: '',
-    strikeVolume: '',
-    striketemperature: '',
-    mashPH: ''
+     og: '0',
+    strikeVolume: '0',
+    strikeTemp: '0',
+    mashPH: '0'
   })
   const classes = useStyles()
   const onBrewLogChanged = e => {
-    
+   
     const tempBrewLog = {...brewLog}
     tempBrewLog[e.target.name] = e.target.value
     setBrewLog(tempBrewLog)
@@ -78,6 +79,8 @@ export const Brewlog = () => {
           <Grid container spacing={3}>
             <Grid item xs={12} sm={3}>
               <TextField
+                InputLabelProps={{ shrink: true }}
+                margin="normal"
                 label="Strike Volume"
                 name="strikeVolume" 
                 id='strikeVolume'
@@ -87,17 +90,21 @@ export const Brewlog = () => {
             </Grid>  
             <Grid item xs={12} sm={3}>
               <TextField
+                InputLabelProps={{ shrink: true }}
+                margin="normal"
                 label="Strike Temp"
                 name="strikeTemp" 
                 id='strikeTemp'
                 onChange={onBrewLogChanged}
                 value={brewLog.strikeTemp}
-                placeholder={brewLog.strikeTemp}
+                
              
               />
             </Grid>  
             <Grid item xs={12} sm={3}>
               <TextField
+                InputLabelProps={{ shrink: true }}
+                margin="normal"
                 label="Mash PH"
                 name="mashPH" 
                 id='mashPH'
@@ -107,6 +114,8 @@ export const Brewlog = () => {
             </Grid>  
             <Grid item xs={12} sm={3}>
               <TextField
+                InputLabelProps={{ shrink: true }}
+                margin="normal"
                 label="Original Gravity"
                 name="og" 
                 id='OG'
