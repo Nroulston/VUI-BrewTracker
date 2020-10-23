@@ -37,7 +37,7 @@ const usersSlice = createSlice({
     userLoggedIn(state, action){
    
       state.currentUser= action.payload
-      state.users.push(action.payload)
+      
       state.isLoggedIn = true
     }
   },
