@@ -60,7 +60,7 @@ export const ShowRecipe = ({match}) => {
   const recipe = useSelector( state => selectRecipeById(state, recipeId))
   
   const startBrewlog = () => {
-    SetBrewlogFlag(true)
+    SetBrewlogFlag(false)
   }
   
  
