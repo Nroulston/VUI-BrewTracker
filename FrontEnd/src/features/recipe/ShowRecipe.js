@@ -111,7 +111,7 @@ export const ShowRecipe = ({match}) => {
           </div>
           <Grid> 
            
-              {BrewlogFlag && <Brewlog />}
+              {BrewlogFlag && <Brewlog recipe={recipe} />}
             
           
           </Grid>

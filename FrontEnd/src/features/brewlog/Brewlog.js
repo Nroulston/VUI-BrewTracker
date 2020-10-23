@@ -1,23 +1,13 @@
 import React, { useState } from 'react';
-import {Link} from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
 import Dictaphone from '../dictaphone/Dictaphone'
-import { useEffect } from 'react';
-
 import { makeStyles } from '@material-ui/core/styles';
-
 import CssBaseline from '@material-ui/core/CssBaseline';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
 import Paper from '@material-ui/core/Paper';
-import Stepper from '@material-ui/core/Stepper';
-import Step from '@material-ui/core/Step';
-import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
-
+import axios from 'axios'
 
 const useStyles = makeStyles((theme) => ({
 
@@ -65,6 +55,10 @@ export const Brewlog = () => {
     const tempBrewLog = {...brewLog}
     tempBrewLog[e.target.name] = e.target.value
     setBrewLog(tempBrewLog)
+  }
+
+  const submitBrewLog = () => {
+
   }
 
   return(
@@ -124,8 +118,19 @@ export const Brewlog = () => {
                 
                 
               />
-            </Grid>  
+            </Grid>
           </Grid>  
+              <div className={classes.buttons}>
+                <Button
+                  type='button'
+                  variant="contained"
+                  color="primary"
+                  className={classes.button}
+                  onClick={submitBrewLog}
+                >
+                  Submit
+                </Button>
+              </div>  
         </Paper>
       </main>
     </React.Fragment> 
