@@ -1,4 +1,8 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import {userSignedUp} from './usersSlice'
+import axios from 'axios'
 
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -12,11 +16,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 
-// import {Link} from 'react-router-dom'
-import { useDispatch } from 'react-redux'
-import {userSignedUp} from './usersSlice'
 
-import axios from 'axios'
 
 function Copyright() {
   return (
@@ -56,7 +56,8 @@ export const Signup = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] =useState('')
   const [errors, setErrors] = useState([])
-
+  
+  const history = useHistory()
   const classes = useStyles()
   const dispatch = useDispatch()
 

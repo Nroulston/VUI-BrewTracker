@@ -11,6 +11,7 @@ import {Signup} from './features/users/Signup'
 import {ShowRecipe} from './features/recipe/ShowRecipe'
 import {Brewlog} from './features/brewlog/Brewlog'
 import {RecipeFormContainer} from './features/recipe/RecipeFormContainer'
+import {RecipeIndex} from './features/recipe/RecipeIndex'
 import { ShowBrewlog } from './features/brewlog/ShowBrewlog';
 
 
@@ -37,6 +38,7 @@ function App() {
               <Route exact path='/login' component={Login}/>
               <Route exact path='/signup' component={Signup}/>
               <Route exact path='/recipes/new' component={RecipeFormContainer}/>
+              <Route exact path='/recipes' component={RecipeIndex}/>
               <Route exact path='/recipes/:recipeId' component={ShowRecipe}/>
               <Route exact path='/brewlog' component={Brewlog} />
               <Route exact path='/recipes/:recipeId/brewlogs/:brewlogId' component={ShowBrewlog} />
