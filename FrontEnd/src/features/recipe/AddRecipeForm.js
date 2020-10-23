@@ -7,7 +7,7 @@ import {recipeAdded} from './recipesSlice'
 import Button from '@material-ui/core/Button'
 
 import axios from 'axios'
-import { TextareaAutosize } from '@material-ui/core';
+
 const _defaultHops = [
   {
     name: '',
@@ -42,8 +42,6 @@ export const AddRecipeForm = (props) => {
   const [adjuncts, setAdjuncts] = useState([{name: ''}])
 
   const dispatch = useDispatch()
-  
-  const users = useSelector(state => state.users.users)
   const currentUser = useSelector( state => state.users.currentUser)
   
   const onNameChanged = e => setName(e.target.value)

@@ -2,19 +2,15 @@ import React, {useState} from 'react';
 import { useSelector } from 'react-redux'
 import {selectRecipeById} from './recipesSlice'
 
-import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import Badge from '@material-ui/core/Badge';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
-import MenuIcon from '@material-ui/icons/Menu';
-import NotificationsIcon from '@material-ui/icons/Notifications';
 
 import RecipeStatsShow from './ingredients/RecipeStatsShow'
 import RecipeGrainsShow from './ingredients/RecipeGrainsShow'
@@ -23,6 +19,7 @@ import RecipeYeastsShow from './ingredients/RecipeYeastsShow'
 import RecipeAdjunctsShow from './ingredients/RecipeAdjunctsShow'
 import {Brewlog} from '../brewlog/Brewlog'
 import BrewlogListRecipeShow from '../brewlog/BrewlogListRecipeShow'
+
 const useStyles = makeStyles((theme) => ({
   appBar: {
     position: 'relative',

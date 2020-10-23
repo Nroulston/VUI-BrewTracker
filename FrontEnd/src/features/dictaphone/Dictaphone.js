@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
 import Button from '@material-ui/core/Button'
 import Grid from '@material-ui/core/Grid';
@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Dictaphone = ( props ) => {
-  const [message, setMessage] = useState('')
+  
   const classes = useStyles();
    //TODO use Node Package to convert words to numbers so you don't have to say number to make sure it is recorded as a number
   const commands = [
@@ -78,11 +78,7 @@ const Dictaphone = ( props ) => {
       >
         Stop Recording
       </Button>
-      
-    
-      
       <p>{transcript}</p>
-      <p>{message}</p>
     </Grid>
   )
 }

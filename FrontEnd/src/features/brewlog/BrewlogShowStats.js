@@ -1,21 +1,15 @@
 import React from 'react';
 
-
-import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Typography from '@material-ui/core/Typography';
-const useStyles = makeStyles((theme) => ({
-  seeMore: {
-    marginTop: theme.spacing(2),
-  },
-}));
 
-export default function BrewlogShowStats({recipe, brewlog}) {
-  const classes = useStyles();
+
+export default function BrewlogShowStats({ brewlog}) {
+ 
   //TODO create comparison between stats
   return (
     <React.Fragment>
