@@ -21,10 +21,15 @@ const Dictaphone = ( props ) => {
   
   const commands = [
     {
-      command: 'record *',
-      callback: (food) => {
-      props.setBrewLog({ og: `${food}` })
-      setMessage(`Your order is for: ${food}`)
+      command: 'record strike temperature *',
+      callback: (temp) => { 
+      props.setBrewLog({ strikeTemp: `${temp}` })
+      }
+    },
+    {
+      command: 'record strike volume *',
+      callback: (vol) => { 
+      props.setBrewLog({ strikeVolume: `${vol}` })
       }
     },
     {

@@ -109,12 +109,18 @@ export const ShowRecipe = ({match}) => {
               Start BrewLog
             </Button>
           </div>
+          <Grid> 
+           
+              {BrewlogFlag && <Brewlog />}
+            
+          
+          </Grid>
           <Grid container spacing={3}>
             <Grid item xs={12} >
               <Paper className={classes.paper} >
                 <RecipeStatsShow recipe={recipe} />
               </Paper>
-            </Grid>
+            </Grid> 
             <Grid item xs>
               <Paper>
                 <RecipeGrainsShow recipe={recipe} />
@@ -135,12 +141,6 @@ export const ShowRecipe = ({match}) => {
                 <RecipeAdjunctsShow recipe={recipe}/>
               </Paper>
             </Grid>
-          </Grid>
-          <Grid> 
-           
-              {BrewlogFlag && <Brewlog />}
-            
-          
           </Grid>
         </Container>
       </main>

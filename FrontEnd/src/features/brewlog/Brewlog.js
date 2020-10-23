@@ -55,7 +55,7 @@ export const Brewlog = () => {
   const [brewLog, setBrewLog] = useState({
      og: '',
     strikeVolume: '',
-    strikeTemp: '',
+    striketemperature: '',
     mashPH: ''
   })
   const classes = useStyles()
@@ -80,7 +80,7 @@ export const Brewlog = () => {
               <TextField
                 label="Strike Volume"
                 name="strikeVolume" 
-                id='strikeVolume0'
+                id='strikeVolume'
                 onChange={onBrewLogChanged}
                 value={brewLog.strikeVolume}
               />
@@ -92,6 +92,8 @@ export const Brewlog = () => {
                 id='strikeTemp'
                 onChange={onBrewLogChanged}
                 value={brewLog.strikeTemp}
+                placeholder={brewLog.strikeTemp}
+             
               />
             </Grid>  
             <Grid item xs={12} sm={3}>
@@ -110,6 +112,8 @@ export const Brewlog = () => {
                 id='OG'
                 onChange={onBrewLogChanged}
                 value={brewLog.og}
+                
+                
               />
             </Grid>  
           </Grid>  
