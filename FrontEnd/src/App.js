@@ -12,6 +12,7 @@ import {AddRecipeForm} from './features/recipe/AddRecipeForm'
 import {ShowRecipe} from './features/recipe/ShowRecipe'
 import {Brewlog} from './features/brewlog/Brewlog'
 import {RecipeFormContainer} from './features/recipe/RecipeFormContainer'
+import { ShowBrewlog } from './features/brewlog/ShowBrewlog';
 
 
 
@@ -39,6 +40,7 @@ function App() {
               <Route exact path='/recipes/new' component={RecipeFormContainer}/>
               <Route exact path='/recipes/:recipeId' component={ShowRecipe}/>
               <Route exact path='/brewlog' component={Brewlog} />
+              <Route exact path='/recipes/:recipeId/brewlogs/:brewlogId' component={ShowBrewlog} />
               <Redirect to='/' />
             </Switch>
           </BrowserRouter>

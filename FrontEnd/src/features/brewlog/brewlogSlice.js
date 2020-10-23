@@ -27,3 +27,6 @@ const brewlogsSlice = createSlice({
 export const { brewlogAdded } = brewlogsSlice.actions
 
 export default brewlogsSlice.reducer
+
+export const selectBrewlogById = (state, brewlogId) => 
+  state.brewlogs.brewlogs.find(brewlog => brewlog.id == brewlogId)

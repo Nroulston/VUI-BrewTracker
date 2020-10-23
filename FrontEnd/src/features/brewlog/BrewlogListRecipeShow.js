@@ -31,7 +31,7 @@ export default function BrewlogListRecipeShow({recipe}) {
             <TableRow key={index}>  
               
               <TableCell>
-                <Link color="inherit" href={`https://http://localhost:3000/brewlogs/${brewlog.id}`}>{brewlog.created_at.slice(0, 10)} 
+                <Link color="inherit" href={`http://localhost:3000/recipes/${recipe.id}/brewlogs/${brewlog.id}`}>{brewlog.created_at.slice(0, 10)} 
                 </Link>
               </TableCell>
             </TableRow>
