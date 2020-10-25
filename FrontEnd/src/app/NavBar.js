@@ -1,4 +1,6 @@
 import React from 'react';
+import { useSelector} from 'react-redux'
+
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -30,11 +32,35 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+function LoginButton() {
+  const classes =useStyles()
+  return (
+    <Button href="http://localhost:3000/login" color="primary" variant="outlined" className={classes.link}>
+       Login
+    </Button>
+  );
+}
+
+function LogoutButton() {
+  const classes =useStyles()
+  return (
+    <Button href="http://localhost:3000/logout" color="primary" variant="outlined" className={classes.link}>
+      Logout
+    </Button>
+  );
+}
 
 export default function NavBar() {
   const classes = useStyles();
-
   
+  const isLoggedIn = useSelector( state => state.users.isLoggedIn)
+  let button;
+  if (isLoggedIn) {
+    button = <LogoutButton  />;
+  } else {
+    button = <LoginButton />;
+  }
+
 
   return (
     <React.Fragment>
@@ -52,9 +78,7 @@ export default function NavBar() {
               New Recipe
             </Link>
           </nav>
-          <Button href="http://localhost:3000/login" color="primary" variant="outlined" className={classes.link}>
-            Login
-          </Button>
+          {button}
         </Toolbar>
       </AppBar>
     </React.Fragment>
