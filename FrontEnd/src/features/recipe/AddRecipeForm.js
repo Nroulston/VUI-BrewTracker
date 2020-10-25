@@ -45,6 +45,7 @@ export const AddRecipeForm = (props) => {
 
   const dispatch = useDispatch()
   const currentUser = useSelector( state => state.users.currentUser)
+  const history = useHistory()
   
   const onNameChanged = e => setName(e.target.value)
   const onMethodChanged = e => setMethod(e.target.value)
@@ -107,7 +108,7 @@ export const AddRecipeForm = (props) => {
 
 
   const onSaveRecipeClicked = async () => {
-    const history = useHistory()
+   
 
     const recipe = { 
       user_id: currentUser.id,
