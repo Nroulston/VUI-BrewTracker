@@ -19,6 +19,7 @@ import RecipeYeastsShow from './ingredients/RecipeYeastsShow'
 import RecipeAdjunctsShow from './ingredients/RecipeAdjunctsShow'
 import {Brewlog} from '../brewlog/Brewlog'
 import BrewlogListRecipeShow from '../brewlog/BrewlogListRecipeShow'
+import NavBar from '../../app/NavBar'
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -74,13 +75,7 @@ export const ShowRecipe = ({match}) => {
   return(
     <div className={classes.root}>
       <CssBaseline />
-      <AppBar className={classes.appBar}>
-        <Toolbar>
-          <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-            Your Company
-          </Typography>
-        </Toolbar>
-      </AppBar>
+     <NavBar />
       <main className={classes.content}>
           <Container maxWidth="lg" className={classes.container}>
           <Typography component="h1" variant="h4" align="center">

@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { Link as RouterLink } from 'react-router-dom';
+import NavBar from '../../app/NavBar'
 
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
@@ -47,13 +48,7 @@ export function RecipeIndex() {
   return (
     <React.Fragment>
       <CssBaseline />
-      <AppBar position="relative">
-        <Toolbar>
-          <Typography variant="h6" color="inherit" noWrap>
-            Your Company
-          </Typography>
-        </Toolbar>
-      </AppBar>
+      <NavBar />
       <main>
         <div className={classes.heroContent}>
           <Container maxWidth="sm">

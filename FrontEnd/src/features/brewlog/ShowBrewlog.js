@@ -20,7 +20,7 @@ import RecipeHopsShow from '../recipe/ingredients/RecipeHopsShow'
 import RecipeYeastsShow from '../recipe/ingredients/RecipeYeastsShow'
 import RecipeAdjunctsShow from '../recipe/ingredients/RecipeAdjunctsShow'
 import BrewlogShowStats from './BrewlogShowStats'
-
+import NavBar from '../../app/NavBar'
 const useStyles = makeStyles((theme) => ({
   appBar: {
     position: 'relative',
@@ -68,13 +68,8 @@ export const ShowBrewlog = ({match}) => {
   return(
     <div className={classes.root}>
       <CssBaseline />
-      <AppBar className={classes.appBar}>
-        <Toolbar>
-          <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-            Your Company
-          </Typography>
-        </Toolbar>
-      </AppBar>
+      <NavBar />
+ 
       <main className={classes.content}>
           <Container maxWidth="lg" className={classes.container}>
           <Typography component="h1" variant="h4" align="center">

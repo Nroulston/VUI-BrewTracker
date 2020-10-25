@@ -1,5 +1,8 @@
 
 import React from 'react';
+import {AddRecipeForm} from './AddRecipeForm';
+import NavBar from '../../app/NavBar'
+
 
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -8,7 +11,6 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 
-import {AddRecipeForm} from './AddRecipeForm';
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -49,13 +51,7 @@ export const RecipeFormContainer = () => {
   return (
     <React.Fragment>
       <CssBaseline />
-      <AppBar position="static" color="primary" className={classes.appBar}>
-        <Toolbar>
-          <Typography variant="h6" color="inherit" noWrap>
-            Company name
-          </Typography>
-        </Toolbar>
-      </AppBar>
+      <NavBar />
       <main className={classes.layout}>
         <Paper className={classes.paper}>
           <Typography component="h1" variant="h4" align="center">

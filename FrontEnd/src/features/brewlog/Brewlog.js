@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector} from 'react-redux'
 import {brewlogAdded} from './brewlogSlice'
+import Dictaphone from '../dictaphone/Dictaphone'
 import axios from 'axios'
 
 
 //MUI imports
-import Dictaphone from '../dictaphone/Dictaphone'
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Paper from '@material-ui/core/Paper';

@@ -40,7 +40,6 @@ function App() {
               <Route exact path='/recipes/new' component={RecipeFormContainer}/>
               <Route exact path='/recipes' component={RecipeIndex}/>
               <Route exact path='/recipes/:recipeId' component={ShowRecipe}/>
-              <Route exact path='/brewlog' component={Brewlog} />
               <Route exact path='/recipes/:recipeId/brewlogs/:brewlogId' component={ShowBrewlog} />
               <Redirect to='/' />
             </Switch>
