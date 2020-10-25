@@ -3,6 +3,7 @@ import { useDispatch} from 'react-redux'
 import {userLoggedIn} from './usersSlice'
 import NavBar from '../../app/NavBar'
 import { Link as RouterLink } from 'react-router-dom';
+import { useHistory } from 'react-router-dom'
 
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -68,7 +69,8 @@ export const Login = () => {
 
   const dispatch = useDispatch()
   const classes = useStyles();
-
+  const history = useHistory()
+  
   const handleSubmit = async() => {
   setErrors([])
     const user = {
@@ -85,7 +87,7 @@ export const Login = () => {
      setPassword('')
      setUsername('')
      setEmail('')
-     //Todo Redirect to main page
+     history.push(`/recipes`)
    }
   }
 

@@ -9,7 +9,6 @@ import Home from './app/Home'
 import {Login} from './features/users/Login'
 import {Signup} from './features/users/Signup'
 import {ShowRecipe} from './features/recipe/ShowRecipe'
-import {Brewlog} from './features/brewlog/Brewlog'
 import {RecipeFormContainer} from './features/recipe/RecipeFormContainer'
 import {RecipeIndex} from './features/recipe/RecipeIndex'
 import { ShowBrewlog } from './features/brewlog/ShowBrewlog';

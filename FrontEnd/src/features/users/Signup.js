@@ -79,7 +79,7 @@ export const Signup = () => {
      setPassword('')
      setUsername('')
      setEmail('')
-     //Todo Redirect to main page
+     history.push(`/recipes`)
    }
   }
 

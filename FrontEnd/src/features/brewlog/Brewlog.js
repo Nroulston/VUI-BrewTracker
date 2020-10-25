@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector} from 'react-redux'
+import { useHistory } from 'react-router-dom'
 import {brewlogAdded} from './brewlogSlice'
 import Dictaphone from '../dictaphone/Dictaphone'
 import axios from 'axios'
@@ -71,6 +72,7 @@ export const Brewlog = ({recipe}) => {
   }
   const dispatch = useDispatch()
   const classes = useStyles()
+  const history = useHistory()
 
   const onBrewlogChanged = e => { 
     const tempBrewlog = {...brewlog}
@@ -82,6 +84,7 @@ export const Brewlog = ({recipe}) => {
     const response = await axios.post(`${localHost}/brewlogs`, {brew_log}, {withCredentials:true})
    
     dispatch(brewlogAdded(response.data.brewlog))
+    history.push(`/recipes/${response.data.brewlog.recipe_id}/brewlogs/${response.data.brewlog.id}`)
   }
 
   return(
