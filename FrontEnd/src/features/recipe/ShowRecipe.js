@@ -85,7 +85,7 @@ export const ShowRecipe = ({match}) => {
               variant="contained"
               color="primary"
               className={classes.button}
-              onClick={""}
+             
             >
               Edit
             </Button>
