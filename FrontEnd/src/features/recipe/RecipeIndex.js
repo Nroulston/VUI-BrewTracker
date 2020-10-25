@@ -1,5 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux'
+import { Link as RouterLink } from 'react-router-dom';
 
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
@@ -65,7 +66,7 @@ export function RecipeIndex() {
           </Container>
         </div>
         <Container className={classes.cardGrid} maxWidth="md">
-          {/* End hero unit */}
+         
           <Grid container spacing={4}>
             {recipes.map((recipe) => (
               <Grid item key={recipe} xs={12} sm={6} md={4}>
@@ -78,7 +79,7 @@ export function RecipeIndex() {
      
       </CardContent>
       <CardActions>
-        <Link href={`http://localhost:3000/recipes/${recipe.id}`}size="small" color='primary'>See More </Link>
+        <Link component={RouterLink} to={`/recipes/${recipe.id}`}size="small" color='primary'>See More </Link>
       </CardActions>
     </Card>
               </Grid>

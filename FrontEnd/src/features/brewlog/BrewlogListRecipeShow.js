@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { useSelector} from 'react-redux'
+import { Link as RouterLink } from 'react-router-dom';
 
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -31,7 +32,7 @@ export default function BrewlogListRecipeShow({recipe}) {
             <TableRow key={index}>  
               
               <TableCell>
-                <Link color="inherit" href={`http://localhost:3000/recipes/${recipe.id}/brewlogs/${brewlog.id}`}>{brewlog.created_at.slice(0, 10)} 
+                <Link color="inherit"  component={RouterLink} to={`/recipes/${recipe.id}/brewlogs/${brewlog.id}`}>{brewlog.created_at.slice(0, 10)} 
                 </Link>
               </TableCell>
             </TableRow>

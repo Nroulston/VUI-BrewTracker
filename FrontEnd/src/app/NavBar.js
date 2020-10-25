@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector} from 'react-redux'
+import { Link as RouterLink } from 'react-router-dom';
 
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
@@ -35,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
 function LoginButton() {
   const classes =useStyles()
   return (
-    <Button href="http://localhost:3000/login" color="primary" variant="outlined" className={classes.link}>
+    <Button component={RouterLink} to="/login" color="primary" variant="outlined" className={classes.link}>
        Login
     </Button>
   );
@@ -71,10 +72,10 @@ export default function NavBar() {
             Company name
           </Typography>
           <nav>
-            <Link variant="button" color="textPrimary" href="http://localhost:3000/recipes" className={classes.link}>
+            <Link variant="button" color="textPrimary" component={RouterLink}  to="/recipes" className={classes.link}>
               Recipes
             </Link>
-            <Link variant="button" color="textPrimary" href="http://localhost:3000/recipes/new" className={classes.link}>
+            <Link variant="button" color="textPrimary" component={RouterLink} to="/recipes/new" className={classes.link}>
               New Recipe
             </Link>
           </nav>

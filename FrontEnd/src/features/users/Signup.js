@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import {userSignedUp} from './usersSlice'
+import { Link as RouterLink } from 'react-router-dom';
 import axios from 'axios'
 
 import Avatar from '@material-ui/core/Avatar';
@@ -155,7 +156,7 @@ export const Signup = () => {
           </Button>
           <Grid container justify="flex-end">
             <Grid item>
-              <Link href="/login" variant="body2">
+              <Link component={RouterLink} to="/login" variant="body2">
                 Already have an account? Sign in
               </Link>
             </Grid>
