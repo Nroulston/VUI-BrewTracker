@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom'
+
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
@@ -105,7 +107,8 @@ export const AddRecipeForm = (props) => {
 
 
   const onSaveRecipeClicked = async () => {
-    debugger
+    const history = useHistory()
+
     const recipe = { 
       user_id: currentUser.id,
       name,
@@ -142,7 +145,7 @@ export const AddRecipeForm = (props) => {
     setMashPH('')
     setMashSchedule('')
     setBeerStyle('')
-    //TODO forward to the next page 
+    history.push(`/recipes/${response.data.recipe}`)
   }
 
   return (
