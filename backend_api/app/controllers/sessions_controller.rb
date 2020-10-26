@@ -21,6 +21,7 @@ class SessionsController < ApplicationController
        else
         render json: {response: 'No user is logged in'}, status: 401
         
+        
       end
   end
   def destroy

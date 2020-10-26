@@ -12,7 +12,7 @@ import {ShowRecipe} from './features/recipe/ShowRecipe'
 import {RecipeFormContainer} from './features/recipe/RecipeFormContainer'
 import {RecipeIndex} from './features/recipe/RecipeIndex'
 import { ShowBrewlog } from './features/brewlog/ShowBrewlog';
-
+import ScrollToTop from './app/ScrollToTop'
 
 
 function App() {
@@ -32,6 +32,7 @@ function App() {
         <>
         
         <BrowserRouter>
+            <ScrollToTop />
             <Switch>
               <Route exact path='/' component={Home}/>
               <Route exact path='/login' component={Login}/>

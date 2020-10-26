@@ -19,6 +19,7 @@ import RecipeAdjunctsShow from '../recipe/ingredients/RecipeAdjunctsShow'
 import BrewlogShowStats from './BrewlogShowStats'
 import NavBar from '../../app/NavBar'
 
+
 const useStyles = makeStyles((theme) => ({
   appBar: {
     position: 'relative',

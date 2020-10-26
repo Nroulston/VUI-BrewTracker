@@ -9,7 +9,7 @@ const localHost = 'http://localhost:3001'
 
 export const fetchRecipes = createAsyncThunk('recipes/fetchRecipes', async() => {
   const response = await axios.get(`${localHost}/recipes`, {withCredentials: true})
- 
+  
   return response.data
 })
 
