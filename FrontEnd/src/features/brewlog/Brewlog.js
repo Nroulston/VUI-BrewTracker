@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom'
 import {brewlogAdded} from './brewlogSlice'
 import Dictaphone from '../dictaphone/Dictaphone'
 import axios from 'axios'
+import SpeechRecognition from 'react-speech-recognition'
 
 
 //MUI imports
@@ -91,6 +92,7 @@ export const Brewlog = ({recipe}) => {
     const response = await axios.post(`${localHost}/brewlogs`, {brew_log}, {withCredentials:true})
    
     dispatch(brewlogAdded(response.data.brewlog))
+    SpeechRecognition.stopListening()
     history.push(`/recipes/${response.data.brewlog.recipe_id}/brewlogs/${response.data.brewlog.id}`)
   }
 
