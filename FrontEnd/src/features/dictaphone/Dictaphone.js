@@ -23,25 +23,25 @@ const Dictaphone = ( props ) => {
     {
       command: 'record strike temperature number *',
       callback: (temp) => { 
-      props.setBrewlog({ strikeTemp: `${temp}` })
+      props.onBrewLogChangedWithVoice( "strikeTemp", temp)
       }
     },
     {
       command: 'record strike volume number *',
       callback: (vol) => { 
-      props.setBrewlog({ strikeVolume: `${vol}` })
+      props.onBrewLogChangedWithVoice( "strikeVolume", vol)
       }
     },
     {
       command: 'record Mash pH number *',
       callback: (ph) => { 
-      props.setBrewlog({ mashPH: `${ph}` })
+      props.onBrewLogChangedWithVoice( "mashPH", ph)
       }
     },
     {
       command: 'record Original Gravity number *',
       callback: (og) => { 
-      props.setBrewlog({ og: `${og}` })
+      props.onBrewLogChangedWithVoice( "og", og)
       }
     },
     {

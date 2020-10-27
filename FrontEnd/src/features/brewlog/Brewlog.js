@@ -80,6 +80,13 @@ export const Brewlog = ({recipe}) => {
     setBrewlog(tempBrewlog)
   }
 
+  const onBrewLogChangedWithVoice = (key, value) => {
+    
+    const tempBrewlog = {...brewlog, [key]:value}
+    setBrewlog(tempBrewlog)
+
+  }
+
   const submitBrewlog = async() => {
     const response = await axios.post(`${localHost}/brewlogs`, {brew_log}, {withCredentials:true})
    
@@ -95,7 +102,7 @@ export const Brewlog = ({recipe}) => {
           <Typography component="h1" variant="h4" align="center">
            BrewLog
           </Typography>
-          <Dictaphone setBrewlog={setBrewlog} />
+          <Dictaphone onBrewLogChangedWithVoice={onBrewLogChangedWithVoice} />
           <Grid container spacing={3}>
             <Grid item xs={12} sm={3}>
               <TextField
