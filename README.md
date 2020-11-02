@@ -1,6 +1,6 @@
-# Cohort Game Time
+# Brew Tracker with Voice User Interface
 
-Welcome to Cohort Game Time a simple drinking game designed to use Websockets for real time communication between clients. You can change the kind of cards to just trivia by working with the cards class's in the front end. 
+Welcome to Brew Tracker with Voice User Interface a simple MVP app that integrates the react-speech-recognition npm package to wrap around MDN's Web Speech API to record a brew days data. The App was written with a Rails API backend, and uses hooks with React Redux and Redux-toolkit in the frontend. 
 
 ## Prerequisites
 *You have installed the following
@@ -11,7 +11,7 @@ Welcome to Cohort Game Time a simple drinking game designed to use Websockets fo
 
 https://nroulston.github.io/nuances_of_react_with_hooks_and_redux
 
-## Installing Cohort Game Time
+## Installing Brew Tracker with Voice User Interface
 
 Fork and clone to your local machine.
 
