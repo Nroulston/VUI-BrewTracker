@@ -146,7 +146,7 @@ export const AddRecipeForm = (props) => {
     setMashPH('')
     setMashSchedule('')
     setBeerStyle('')
-    history.push(`/recipes/${response.data.recipe}`)
+    history.push(`/recipes/${response.data.recipe.id}`)
   }
 
   return (
